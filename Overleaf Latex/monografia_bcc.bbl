@@ -1,0 +1,268 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v<VERSION> }
+
+\bibitem[Assous 2007]{Assous2007}
+\abntrefinfo{Assous}{ASSOUS}{2007}
+{ASSOUS, M. Kalecki's 1934 model vs. the is-lm model of hicks (1937) and
+  modigliani (1944)∗.
+\emph{The European Journal of the History of Economic Thought}, Routledge,
+  v.~14, n.~1, p. 97--118, 2007.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/doi\-.org\-/10\-.1080\-/09672560601168488$>$.}
+
+\bibitem[Athey e Wager 2019]{Athey2019Estimating}
+\abntrefinfo{Athey e Wager}{ATHEY; WAGER}{2019}
+{ATHEY, S.; WAGER, S. Estimating treatment effects with causal forests: An
+  application.
+\emph{Observational Studies}, v.~5, n.~2, p. 37--51, 2019.}
+
+\bibitem[Belo e Brasil 2006]{Belo2006}
+\abntrefinfo{Belo e Brasil}{BELO; BRASIL}{2006}
+{BELO, N.~M.; BRASIL, H.~G. Assimetria informacional e eficiência semiforte do
+  mercado.
+\emph{RAE - Revista de Administracao de Empresas}, v.~46, p. 48–57, Jan.
+  2006.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/periodicos\-.fgv\-.br\-/rae\-/article\-/view\-/37016$>$.}
+
+\bibitem[Bezerra 2006]{Bezerra2006}
+\abntrefinfo{Bezerra}{BEZERRA}{2006}
+{BEZERRA, M. I.~S. Apostila de análise de séries temporais.
+2006.}
+
+\bibitem[Brasil 2025]{BCB}
+\abntrefinfo{Brasil}{BRASIL}{2025}
+{BRASIL, B.~C. do. \emph{Política monetária}. 2025.
+Dispon{\'\i}vel em: $<$https:\-/\-/www\-.bcb\-.gov\-.br\-/controleinflacao$>$.
+  Acesso em: 12.7.2025.}
+
+\bibitem[Brigo et al. 2021]{brigo2021interpretabilitydeeplearningfinance}
+\abntrefinfo{Brigo et al.}{BRIGO et al.}{2021}
+{BRIGO, D. et al. \emph{Interpretability in deep learning for finance: a case
+  study for the Heston model}. 2021.
+Dispon{\'\i}vel em: $<$https:\-/\-/arxiv\-.org\-/abs\-/2104\-.09476$>$.}
+
+\bibitem[Burton 2021]{Burton2021OLS}
+\abntrefinfo{Burton}{BURTON}{2021}
+{BURTON, A.~L. Ols (linear) regression. In:  BARNES, J.~C.; FORDE, D.~R. (Ed.).
+  \emph{The Encyclopedia of Research Methods in Criminology and Criminal
+  Justice}. [S.l.]: Wiley, 2021. p. 509--514.}
+
+\bibitem[Cardoso 2024]{Cardoso2024}
+\abntrefinfo{Cardoso}{CARDOSO}{2024}
+{CARDOSO, R.~F.
+\emph{Predição de volatilidade utilizando a transformada wavelet e os modelos
+  ARIMA e GARCH}.
+Disserta\c{c}\~{a}o (Trabalho de Graduação em Engenharia de Informação) ---
+  Universidade Federal do ABC, Santo André - SP, 2024.}
+
+\bibitem[Carrara e Correa 2012]{Carrara2012}
+\abntrefinfo{Carrara e Correa}{CARRARA; CORREA}{2012}
+{CARRARA, A.~F.; CORREA, A.~L. O regime de metas de inflação no brasil: uma
+  análise empírica do ipca.
+\emph{Rev. econ. contemp.}, 2012.}
+
+\bibitem[Cho, Elton e Gruber 1984]{Cho_Elton_Gruber_1984}
+\abntrefinfo{Cho, Elton e Gruber}{CHO; ELTON; GRUBER}{1984}
+{CHO, D.~C.; ELTON, E.~J.; GRUBER, M.~J. On the robustness of the roll and ross
+  arbitrage pricing theory.
+\emph{Journal of Financial and Quantitative Analysis}, v.~19, n.~1, p. 1–10,
+  1984.}
+
+\bibitem[Coelho 2014]{Coelho2014Regressao}
+\abntrefinfo{Coelho}{COELHO}{2014}
+{COELHO, C.~J. \emph{Regressão Linear Múltipla}. 2014. Slide de aula /
+  Material didático.
+Fundamentos IV; Grupo de Pesquisa em Computação Científica (GPCC).}
+
+\bibitem[Davidson 1982]{Davidson1982}
+\abntrefinfo{Davidson}{DAVIDSON}{1982}
+{DAVIDSON, P. Rational expectations: A fallacious foundation for studying
+  crucial decision-making processes.
+\emph{Journal of Post Keynesian Economics}, Routledge, v.~5, n.~2, p. 182--198,
+  1982.}
+
+\bibitem[Dimson e Mussavian 1998]{Dimson1998}
+\abntrefinfo{Dimson e Mussavian}{DIMSON; MUSSAVIAN}{1998}
+{DIMSON, E.; MUSSAVIAN, M. A brief history of market efficiency.
+\emph{Journal of Post Keynesian Economics}, v.~3, n.~3, p. 959--970, 1998.}
+
+\bibitem[Dornelas e Aragón 2024]{Dornelas2024}
+\abntrefinfo{Dornelas e Aragón}{DORNELAS; ARAGóN}{2024}
+{DORNELAS, S. R.~A. de S.; ARAGóN, E.~K. da S.~B. Choques monetários e
+  flutuações macroeconômicas no brasil.
+2024.}
+
+\bibitem[Fama 1970]{Fama1970Efficient}
+\abntrefinfo{Fama}{FAMA}{1970}
+{FAMA, E.~F. Efficient capital markets: A review of theory and empirical work.
+\emph{The Journal of Finance}, v.~25, n.~2, p. 383--417, 1970.
+Papers and Proceedings of the Twenty-Eighth Annual Meeting of the American
+  Finance Association New York, N.Y. December, 28-30, 1969.}
+
+\bibitem[French 2003]{French2003}
+\abntrefinfo{French}{FRENCH}{2003}
+{FRENCH, C.~W. The treynor capital asset pricing model.
+\emph{Journal of Investment Management}, v.~1, n.~2, p. 60--72, 2003.}
+
+\bibitem[Friedman 2001]{Friedman2001Machine}
+\abntrefinfo{Friedman}{FRIEDMAN}{2001}
+{FRIEDMAN, J.~H. Greedy function approximation: A gradient boosting machine.
+\emph{The Annals of Statistics}, v.~29, n.~5, p. 1189--1232, 2001.}
+
+\bibitem[Gulen, Jens e Page 2024]{Gulen2024Balancing}
+\abntrefinfo{Gulen, Jens e Page}{GULEN; JENS; PAGE}{2024}
+{GULEN, H.; JENS, C.; PAGE, B. Balancing external vs. internal validity: An
+  application of causal forest in finance.
+\emph{SSRN Electronic Journal}, 2024.
+Available at SSRN: SSRN Scholarly Paper ID 3583685.
+Dispon{\'\i}vel em: $<$https:\-/\-/ssrn\-.com\-/abstract=3583685$>$.}
+
+\bibitem[Hoang e Wiegratz 2022]{Hoang2022Machine}
+\abntrefinfo{Hoang e Wiegratz}{HOANG; WIEGRATZ}{2022}
+{HOANG, D.; WIEGRATZ, K. Machine learning methods in finance: Recent
+  applications and prospects.
+\emph{European Financial Management}, 2022.
+Dispon{\'\i}vel em: $<$https:\-/\-/doi\-.org\-/10\-.1111\-/eufm\-.12408$>$.}
+
+\bibitem[Klein 2000]{Klein2000}
+\abntrefinfo{Klein}{KLEIN}{2000}
+{KLEIN, L.~R. The is-lm model: Its role in macroeconomics.
+In:  \underline{\ \ \ \ \ \ \ \ }. \emph{IS-LM and Modern Macroeconomics}.
+  Dordrecht: Springer Netherlands, 2000. p. 151--159.
+ISBN 978-94-010-0644-6.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/doi\-.org\-/10\-.1007\-/978-94-010-0644-6\underline{\ }11$>$.}
+
+\bibitem[Lundberg e Lee 2018]{lundberg2018consistentfeatureattributiontree}
+\abntrefinfo{Lundberg e Lee}{LUNDBERG; LEE}{2018}
+{LUNDBERG, S.~M.; LEE, S.-I. \emph{Consistent feature attribution for tree
+  ensembles}. 2018.
+Dispon{\'\i}vel em: $<$https:\-/\-/arxiv\-.org\-/abs\-/1706\-.06060$>$.}
+
+\bibitem[Nazemi e Fabozzi 2024]{NAZEMI2024107187}
+\abntrefinfo{Nazemi e Fabozzi}{NAZEMI; FABOZZI}{2024}
+{NAZEMI, A.; FABOZZI, F.~J. Interpretable machine learning for creditor
+  recovery rates.
+\emph{Journal of Banking & Finance}, v.~164, p. 107187, 2024.
+ISSN 0378-4266.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/www\-.sciencedirect\-.com\-/science\-/article\-/pii\-/S0378426624001043$>$.}
+
+\bibitem[Newbold 1983]{Newbold1983}
+\abntrefinfo{Newbold}{NEWBOLD}{1983}
+{NEWBOLD, P. Arima model building and the time series analysis approach to
+  forecasting.
+\emph{Journal of Forecasting}, v.~2, n.~1, p. 23--35, 1983.}
+
+\bibitem[Nunes, Compagnore e Sales 2020]{Nunes2020}
+\abntrefinfo{Nunes, Compagnore e Sales}{NUNES; COMPAGNORE; SALES}{2020}
+{NUNES, R. V.; COMPAGNORE, R. N.; SALES, G.~A. W. Relação entre as variáveis
+  risco país, Índice bovespa e taxa de câmbio no mercado brasileiro.
+\emph{Práticas em Contabilidade e Gestão}, v.~8, n.~2, set. 2020.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/editorarevistas\-.mackenzie\-.br\-/index\-.php\-/pcg\-/article\-/view\-/13370$>$.}
+
+\bibitem[Pontel, Tristão e Boligon 2020]{Pontel2020}
+\abntrefinfo{Pontel, Tristão e Boligon}{PONTEL; TRISTãO; BOLIGON}{2020}
+{PONTEL, J.; TRISTãO, P.~A.; BOLIGON, J. A.~R. O comportamento da taxa selic e
+  as operaÇÕes de investimento e financiamento de pessoa fÍsica no perÍodo
+  pÓs-crise econÔmica.
+\emph{Revista Gestão Organizacional}, v.~13, n.~2, 2020.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/bell\-.unochapeco\-.edu\-.br\-/revistas\-/index\-.php\-/rgo\-/article\-/view\-/4924$>$.}
+
+\bibitem[Qiu, Jammalamadaka e Ning 2020]{Qiu2020Multivariate}
+\abntrefinfo{Qiu, Jammalamadaka e Ning}{QIU; JAMMALAMADAKA; NING}{2020}
+{QIU, J.; JAMMALAMADAKA, S.~R.; NING, N. Multivariate time series analysis from
+  a bayesian machine learning perspective.
+\emph{Annals of Mathematics and Artificial Intelligence}, Springer, v.~88, p.
+  1061--1082, 2020.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/doi\-.org\-/10\-.1007\-/s10472-020-09710-6$>$.}
+
+\bibitem[Rehill 2024]{Rehill2024CausalForest}
+\abntrefinfo{Rehill}{REHILL}{2024}
+{REHILL, P. How do applied researchers use the causal forest? a methodological
+  review of a method.
+\emph{arXiv preprint arXiv:2404.13356}, 2024.
+Version v2, last revised 20 Dec 2024.}
+
+\bibitem[Rodríguez 2016]{Rodríguez2016}
+\abntrefinfo{Rodríguez}{RODRíGUEZ}{2016}
+{RODRíGUEZ, N. D. Country risk in foreign direct investment: similarities and
+  differences with country risk in exports.
+\emph{Nómadas. Critical Journal of Social and Juridical Sciences}, v.~49, p.
+  83–98, sep. 2016.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/revistas\-.ucm\-.es\-/index\-.php\-/NOMA\-/article\-/view\-/53538$>$.}
+
+\bibitem[Ross 1976]{ross1976arbitrage}
+\abntrefinfo{Ross}{ROSS}{1976}
+{ROSS, S. The arbitrage pricing theory.
+\emph{Journal of Economic Theory}, v.~13, n.~3, p. 341--360, 1976.}
+
+\bibitem[Rudin 2019]{rudin2019stopexplainingblackbox}
+\abntrefinfo{Rudin}{RUDIN}{2019}
+{RUDIN, C. \emph{Stop Explaining Black Box Machine Learning Models for High
+  Stakes Decisions and Use Interpretable Models Instead}. 2019.
+Dispon{\'\i}vel em: $<$https:\-/\-/arxiv\-.org\-/abs\-/1811\-.10154$>$.}
+
+\bibitem[Schaffer, Dobbins e Pearson 2021]{Schaffer2021Interrupted}
+\abntrefinfo{Schaffer, Dobbins e Pearson}{SCHAFFER; DOBBINS; PEARSON}{2021}
+{SCHAFFER, A.~L.; DOBBINS, T.~A.; PEARSON, S.-A. Interrupted time series
+  analysis using autoregressive integrated moving average (arima) models: a
+  guide for evaluating large-scale health interventions.
+\emph{BMC Medical Research Methodology}, v.~21, p.~58, 2021.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/doi\-.org\-/10\-.1186\-/s12874-021-01235-8$>$.}
+
+\bibitem[Schlitzer 1995]{SCHLITZER1995125}
+\abntrefinfo{Schlitzer}{SCHLITZER}{1995}
+{SCHLITZER, G. Testing the stationarity of economic time series: further monte
+  carlo evidence.
+\emph{Ricerche Economiche}, v.~49, n.~2, p. 125--144, 1995.
+ISSN 0035-5054.
+Dispon{\'\i}vel em:
+  $<$https:\-/\-/www\-.sciencedirect\-.com\-/science\-/article\-/pii\-/0035505495900195$>$.}
+
+\bibitem[Scott e Varian 2014]{Scott2014Predicting}
+\abntrefinfo{Scott e Varian}{SCOTT; VARIAN}{2014}
+{SCOTT, S.~L.; VARIAN, H.~R. Predicting the present with bayesian structural
+  time series.
+\emph{International Journal of Mathematical Modelling and Numerical
+  Optimisation}, v.~5, n.~1/2, p.~4, 2014.}
+
+\bibitem[Sun e Zhang 2001]{Sun2001}
+\abntrefinfo{Sun e Zhang}{SUN; ZHANG}{2001}
+{SUN, C.; ZHANG, D. Assessing the financial performance of forestry-related
+  investment vehicles: Capital asset pricing model vs. arbitrage pricing
+  theory.
+\emph{American Journal of Agricultural Economics}, v.~83, p. 617--28, 08 2001.}
+
+\bibitem[Yang et al. 2023]{Yang2023Climate}
+\abntrefinfo{Yang et al.}{YANG et al.}{2023}
+{YANG, J. et al. Climate adaptive energy efficiency modeling using a
+  generalized additive approach to optimize building performance across chinese
+  climate zones.
+\emph{Scientific Reports}, v.~15, n.~1, 2023.}
+
+\bibitem[Yen e Lee 2008]{Yen2008}
+\abntrefinfo{Yen e Lee}{YEN; LEE}{2008}
+{YEN, G.; LEE, C.-f. Efficient market hypothesis (emh): Past, present and
+  future.
+\emph{Review of Pacific Basin Financial Markets and Policies}, v.~11, n.~02, p.
+  305--329, 2008.}
+
+\bibitem[Zhang 2025]{Zhang2025Impact}
+\abntrefinfo{Zhang}{ZHANG}{2025}
+{ZHANG, S. Impact of heterogeneous data on financial market volatility: A
+  generalized additive model approach.
+\emph{Desconhecido}, v.~1, n.~3, 2025.
+Dispon{\'\i}vel em: $<$https:\-/\-/doi\-.org\-/10\-.61173\-/ykjrid172$>$.}
+
+\end{thebibliography}
