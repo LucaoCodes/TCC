@@ -650,6 +650,8 @@ Para garantir que as séries transformadas fossem adequadas à modelagem econom�
 
 Os testes realizados sobre as séries transformadas indicaram estacionariedade estatística para todas as variáveis, com p-valores baixos no ADF e altos no KPSS, confirmando que os dados estavam apropriados para a modelagem subsequente.
 
+Com o objetivo de validar a robustez da interpolação linear aplicada às séries de PIB e IPCA, foi conduzido um teste de sensibilidade comparando três métodos distintos de interpolação para frequência diária: interpolação linear, forward fill e interpolação por spline cúbico. Para cada método, os testes ADF e KPSS foram reaplicados às séries resultantes. Os diagnósticos de estacionariedade mostraram-se consistentes entre os três métodos, confirmando que a escolha da interpolação linear não introduziu viés direcional nos dados e que as conclusões sobre estacionariedade são robustas à metodologia de interpolação adotada.
+
 \section{Modelagem Econométrica Tradicional}
 
 A terceira fase do projeto consistiu na aplicação de modelos econométricos clássicos com dois objetivos principais: (i) estabelecer uma linha de base (benchmark) para posterior comparação com modelos baseados em IA, e (ii) obter os primeiros insights explicativos sobre a dinâmica entre as variáveis macroeconômicas e o mercado financeiro. Parte-se da hipótese de que variáveis como a variação do câmbio e do risco-país (EMBI+) exercem efeito negativo e dominante sobre os retornos do Ibovespa, em linha com a teoria de precificação de ativos em economias emergentes — onde a aversão a risco externo e a fuga de capitais são os principais canais de transmissão. Espera-se, ainda, que os modelos lineares revelem limitações frente às não linearidades presentes nos dados financeiros, evidenciando pontos de inflexão e efeitos assimétricos que apenas modelos mais flexíveis, como GAM e BSTS, conseguirão capturar adequadamente. Por fim, a aplicação de Causal Forests testará a hipótese de que os efeitos de choques exógenos — como variações súbitas na taxa Selic ou no risco-país — são heterogêneos entre diferentes regimes econômicos, não podendo ser resumidos por um efeito médio constante.
@@ -754,7 +756,23 @@ Este resultado estabelece um benchmark univariado, baseado apenas no comportamen
 
 Em seguida, foi estimado um modelo de regressão linear múltipla com os retornos do Ibovespa como variável dependente e as variáveis transformadas como preditoras. Observou-se que \textbf{R² = 0{,}209}. Embora o valor seja considerado razoável em contextos de alta volatilidade como o mercado financeiro, ele também evidencia uma limitação importante do modelo MQO: sua baixa capacidade explicativa frente à complexidade das relações econômicas envolvidas. Além disso, o MQO assume linearidade, homocedasticidade e ausência de interações complexas entre variáveis — suposições muitas vezes violadas em séries financeiras. Essas restrições reforçam a necessidade de empregar modelos mais flexíveis e robustos, como GAM, BSTS e Causal Forest, que são capazes de capturar não linearidades, efeitos dinâmicos e relações causais heterogêneas com maior precisão e interpretabilidade. Identificação de dois preditores estatisticamente significativos: variação do dólar, com impacto negativo e variação do risco-país (EMBI+), também com impacto negativo. Os testes diagnósticos indicaram ausência de multicolinearidade (VIF baixo), como visto na Tabela \ref{tab:vif}, mas rejeição das hipóteses de normalidade e homocedasticidade dos resíduos.
 
-Essas falhas nos pressupostos justificam o avanço para modelos mais sofisticados, como os Generalized Additive Models (GAM), que serão empregados na próxima fase.
+O modelo GAM, por sua vez, obteve R² de 0{,}2935 no conjunto de treinamento, representando um ganho explicativo de aproximadamente 8,4 pontos percentuais em relação ao MQO, evidenciando a contribuição das não linearidades capturadas pelas funções de suavização.
+
+Para uma avaliação mais completa do desempenho dos modelos, foram calculadas, além do R², as métricas MAE (Erro Médio Absoluto) e RMSE (Raiz do Erro Quadrático Médio). O MAE mede o desvio médio absoluto entre os valores preditos e os observados, expressando o erro em unidades da própria variável. O RMSE, por sua vez, penaliza de forma quadrática os erros maiores, sendo mais sensível a eventos extremos — característica especialmente relevante em séries financeiras sujeitas a choques e períodos de alta volatilidade. A Tabela \ref{tab:metricas} apresenta o comparativo entre os modelos estimados.
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Modelo} & \textbf{R²} & \textbf{MAE} & \textbf{RMSE} \\ \hline
+ARIMA(4, 0, 3) & --- & 0{,}012225 & 0{,}017085 \\ \hline
+OLS / MQO & 0{,}2086 & 0{,}011093 & 0{,}015239 \\ \hline
+GAM & 0{,}2935 & 0{,}010671 & 0{,}014398 \\ \hline
+\end{tabular}
+\caption{Comparativo de métricas de avaliação dos modelos estimados}\label{tab:metricas}
+\end{table}
+
+Essas falhas nos pressupostos do MQO justificam o avanço para modelos mais sofisticados, como os Generalized Additive Models (GAM), que serão empregados na próxima fase.
 
 
 \begin{table}[ht!]

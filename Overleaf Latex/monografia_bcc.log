@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.14)  14 APR 2026 15:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.14)  14 APR 2026 16:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -764,53 +764,48 @@ LaTeX Warning: Reference `tabela:estatisticas_descritivas' on page 26 undefined 
 
 [26
 
-] [27]
-Overfull \hbox (4.80676pt too wide) in paragraph at lines 684--685
-[]\T1/ptm/m/n/12 Um mo-delo adi-tivo ge-ne-ra-li-zado (GAM)
- []
-
-[28] [29]
+] [27] [28]
 Cap\'{\i }tulo 6.
-[30
+[29
 
-] [31]
+] [30]
 Cap\'{\i }tulo 7.
-<mapa-de-calor-transformada-4.png, id=370, 1284.8pt x 1030.85126pt>
+<mapa-de-calor-transformada-4.png, id=366, 1284.8pt x 1030.85126pt>
 File: mapa-de-calor-transformada-4.png Graphic file (type png)
 <use mapa-de-calor-transformada-4.png>
-Package pdftex.def Info: mapa-de-calor-transformada-4.png  used on input line 750.
+Package pdftex.def Info: mapa-de-calor-transformada-4.png  used on input line 736.
 (pdftex.def)             Requested size: 449.68674pt x 360.80334pt.
-<acf-pacf.png, id=371, 1481.535pt x 460.72125pt>
+<acf-pacf.png, id=367, 1481.535pt x 460.72125pt>
 File: acf-pacf.png Graphic file (type png)
 <use acf-pacf.png>
-Package pdftex.def Info: acf-pacf.png  used on input line 760.
+Package pdftex.def Info: acf-pacf.png  used on input line 746.
 (pdftex.def)             Requested size: 444.46393pt x 138.21744pt.
-[32
+[31
 
-] [33 <./mapa-de-calor-transformada-4.png> <./acf-pacf.png>] [34] [35]
+] [32 <./mapa-de-calor-transformada-4.png> <./acf-pacf.png>] [33] [34]
 Cap\'{\i }tulo 8.
 
-c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:818: Class memoir Error: Font command \bf is not supported.
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:820: Class memoir Error: Font command \bf is not supported.
 
 See the memoir class documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.818 {\bf
+l.820 {\bf
            Atividade} &     Mês 1 &     Mês 2 &     Mês 3 &     Mês 4 & ...
 Use \textbf, or \bfseries{...}, or the oldfontcommands option
 
-[36
+[35
 
 ]
 Cap\'{\i }tulo 9.
-[37
+[36
 
 ] (monografia_bcc.bbl (monografia_bcc.brf)
 \tf@brf=\write5
 \openout5 = `monografia_bcc.brf'.
 
- [38]
+ [37]
 bibitemlist
 
 monografia_bcc.bbl:16: LaTeX Error: Unicode character ∗ (U+2217)
@@ -825,7 +820,7 @@ l.16
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[39
+[38
 
 ]
 monografia_bcc.bbl:155: Misplaced alignment tab character &.
@@ -840,7 +835,7 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[40]) [41]
+[39]) [40]
 \tf@lof=\write6
 \openout6 = `monografia_bcc.lof'.
 
@@ -865,20 +860,20 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `monografia_bcc.brf' has not changed.
-(rerunfilecheck)             Checksum: 2D7337C1EF722EBE277F1803766F25CF;2293.
+(rerunfilecheck)             Checksum: 57873C59CA58FDA463D8FD0E72CBFCC3;2293.
  ) 
 Here is how much of TeX's memory you used:
- 16221 strings out of 467871
- 262383 string characters out of 5418376
- 711686 words of memory out of 5000000
- 44686 multiletter control sequences out of 15000+600000
- 673171 words of font info for 84 fonts, out of 8000000 for 9000
+ 16213 strings out of 467871
+ 262245 string characters out of 5418376
+ 711771 words of memory out of 5000000
+ 44681 multiletter control sequences out of 15000+600000
+ 670368 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,13n,107p,1660b,722s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on monografia_bcc.pdf (42 pages, 803240 bytes).
+Output written on monografia_bcc.pdf (41 pages, 802027 bytes).
 PDF statistics:
- 663 PDF objects out of 1000 (max. 8388607)
- 149 named destinations out of 1000 (max. 500000)
- 356 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 657 PDF objects out of 1000 (max. 8388607)
+ 148 named destinations out of 1000 (max. 500000)
+ 348 words of extra memory for PDF output out of 10000 (max. 10000000)
 
