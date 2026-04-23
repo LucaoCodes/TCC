@@ -230,7 +230,7 @@ Por fim, agradeço à universidade, pelo espaço de aprendizado, pesquisa e cres
 
 % resumo em português
 \begin{resumo}
-Este trabalho tem como objetivo investigar os fatores macroeconômicos que explicam o comportamento de variáveis financeiras no Brasil, por meio de modelos estatísticos e de aprendizado de máquina interpretável. A proposta busca superar as limitações dos modelos econométricos tradicionais, incorporando técnicas mais flexíveis e transparentes para capturar relações não lineares e interações complexas entre variáveis. A metodologia adotada envolveu a construção de uma base de dados diária com séries temporais da taxa Selic, câmbio, IPCA, PIB, Ibovespa e risco-país (EMBI+). As séries foram transformadas por meio de retornos logarítmicos e primeiras diferenças, seguidas de testes de estacionariedade (ADF e KPSS). Foram estimados modelos ARIMA e MQO como linha de base, seguidos pela aplicação de um modelo Generalized Additive Model (GAM). Os resultados indicaram que o modelo MQO apresentou R² de 0,209, com impacto negativo e significativo do câmbio e do risco-país sobre os retornos do Ibovespa. O GAM, por sua vez, obteve R² de 0,2935, evidenciando ganho explicativo ao considerar não linearidades nas variáveis. Como próximos passos, serão estimados modelos mais avançados, como BSTS e Causal Forests, com foco em inferência causal e efeitos heterogêneos. Conclui-se que a aplicação de modelos explicativos com IA interpretável representa uma abordagem promissora para compreender a dinâmica dos mercados financeiros com maior profundidade e utilidade prática.
+Este trabalho tem como objetivo investigar os fatores macroeconômicos que explicam o comportamento de variáveis financeiras no Brasil, por meio de modelos estatísticos e de aprendizado de máquina interpretável. A proposta busca superar as limitações dos modelos econométricos tradicionais, incorporando técnicas mais flexíveis e transparentes para capturar relações não lineares e interações complexas entre variáveis. A metodologia adotada envolveu a construção de uma base de dados diária com séries temporais da taxa Selic, câmbio, IPCA, PIB, Ibovespa e risco-país (EMBI+). As séries foram transformadas por meio de retornos logarítmicos e primeiras diferenças, seguidas de testes de estacionariedade (ADF e KPSS). Foram estimados modelos ARIMA e MQO como linha de base, seguidos pela aplicação de um modelo Generalized Additive Model (GAM). Os resultados indicaram que o modelo MQO apresentou R² de 0,209, com impacto negativo e significativo do câmbio e do risco-país sobre os retornos do Ibovespa. O GAM, por sua vez, obteve R² de 0,2935 no conjunto de treinamento e 0,2938 no conjunto de teste (2020--2024), evidenciando ganho explicativo ao considerar não linearidades nas variáveis sem sobreajuste. Como próximos passos, serão estimados modelos mais avançados, como BSTS e Causal Forests, com foco em inferência causal e efeitos heterogêneos. Conclui-se que a aplicação de modelos explicativos com IA interpretável representa uma abordagem promissora para compreender a dinâmica dos mercados financeiros com maior profundidade e utilidade prática.
  
  \vspace{\onelineskip}
     
@@ -241,7 +241,7 @@ Este trabalho tem como objetivo investigar os fatores macroeconômicos que expli
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-   This study aims to investigate the macroeconomic factors that explain the behavior of financial variables in Brazil using statistical models and interpretable machine learning techniques. The approach seeks to overcome the limitations of traditional econometric models by incorporating more flexible and transparent methods capable of capturing nonlinear relationships and complex interactions between variables. The methodology involved the construction of a daily time series dataset including the Selic interest rate, exchange rate, IPCA inflation, GDP, Ibovespa, and country risk (EMBI+). The data were transformed using logarithmic returns and first differences, followed by stationarity tests (ADF and KPSS). Benchmark models such as ARIMA and OLS (Ordinary Least Squares) were estimated, followed by the application of a Generalized Additive Model (GAM). The OLS model yielded an $R^2$ of 0.209, identifying a significant negative effect of the exchange rate and country risk on Ibovespa returns. The GAM achieved a higher $R^2$ of 0.2935, highlighting improved explanatory power by incorporating nonlinearities. As next steps, more advanced models such as BSTS and Causal Forests will be implemented, with a focus on causal inference and heterogeneous effects. The findings suggest that interpretable AI-based explanatory models offer a promising approach to better understanding the dynamics of financial markets, providing greater analytical depth and practical value for decision-making.
+   This study aims to investigate the macroeconomic factors that explain the behavior of financial variables in Brazil using statistical models and interpretable machine learning techniques. The approach seeks to overcome the limitations of traditional econometric models by incorporating more flexible and transparent methods capable of capturing nonlinear relationships and complex interactions between variables. The methodology involved the construction of a daily time series dataset including the Selic interest rate, exchange rate, IPCA inflation, GDP, Ibovespa, and country risk (EMBI+). The data were transformed using logarithmic returns and first differences, followed by stationarity tests (ADF and KPSS). Benchmark models such as ARIMA and OLS (Ordinary Least Squares) were estimated, followed by the application of a Generalized Additive Model (GAM). The OLS model yielded an $R^2$ of 0.209, identifying a significant negative effect of the exchange rate and country risk on Ibovespa returns. The GAM achieved an $R^2$ of 0.2935 on the training set and 0.2938 on the test set (2020--2024), highlighting improved explanatory power by incorporating nonlinearities without overfitting. As next steps, more advanced models such as BSTS and Causal Forests will be implemented, with a focus on causal inference and heterogeneous effects. The findings suggest that interpretable AI-based explanatory models offer a promising approach to better understanding the dynamics of financial markets, providing greater analytical depth and practical value for decision-making.
    \vspace{\onelineskip}
  
    \noindent 
@@ -678,6 +678,46 @@ A terceira fase do projeto consistiu na aplicação de modelos econométricos cl
 
 % Esses resultados são coerentes com a teoria econômica, dado que choques cambiais e aumento no risco-país tendem a reduzir a atratividade do mercado acionário, e apontam para limitações do modelo linear em capturar a complexidade dos dados, especialmente as não linearidades e interações entre variáveis.
 
+\section{Avaliação Out-of-Sample e Validação Temporal}
+
+Para que as métricas de desempenho reflitam a capacidade preditiva real dos modelos e não apenas a qualidade de ajuste sobre os dados de estimação, foi adotada uma estratégia de avaliação \textit{out-of-sample} com corte temporal estrito. Em séries temporais financeiras, a avaliação \textit{in-sample} — em que o modelo é ajustado e avaliado no mesmo conjunto de dados — tende a subestimar o risco de sobreajuste (\textit{overfitting}), pois permite que o modelo incorpore padrões específicos do período de treino que não necessariamente se reproduzem em dados futuros.
+
+O corte temporal adotado foi $\text{01/01/2020}$, dividindo os dados em:
+
+\begin{itemize}
+\item \textbf{Conjunto de treino:} de novembro de 2001 a dezembro de 2019, totalizando 4.481 observações diárias. Esse período cobre ciclos distintos de política monetária — incluindo a fase de juros elevados nos anos 2000, a crise financeira global de 2008 e o ciclo de redução da Selic iniciado em 2016 —, proporcionando ao modelo exposição a diferentes regimes econômicos.
+\item \textbf{Conjunto de teste:} de janeiro de 2020 a julho de 2024, totalizando 1.117 observações diárias. Esse período inclui eventos sem precedente no histórico de treino: a pandemia de COVID-19 (2020), o ciclo de aperto monetário que elevou a Selic a 13,75\% ao ano entre 2021 e 2023, e o processo de normalização gradual em 2024.
+\end{itemize}
+
+A escolha do corte em 2020 é metodologicamente relevante por dois motivos. Primeiro, o período de teste concentra choques de natureza distinta dos presentes no treino, tornando-o um avaliador mais rigoroso da capacidade de generalização. Segundo, todos os modelos estimados neste trabalho — OLS, GAM, BSTS e Causal Forests — utilizam o mesmo corte, garantindo comparabilidade direta entre as métricas de desempenho.
+
+Os modelos estimados \textit{in-sample} no TCC 1 sobre o conjunto completo de dados servem como linha de base referencial. Para fins de comparação \textit{out-of-sample}, cada modelo foi retreinado exclusivamente nos dados de treino e avaliado no conjunto de teste, com as métricas R², MAE e RMSE calculadas sobre observações não utilizadas na estimação.
+
+\section{Otimização e Configuração do Modelo GAM}\label{sec:gam_otimizacao}
+
+O Modelo Aditivo Generalizado (GAM) foi estimado com a biblioteca \texttt{pyGAM} (Python), utilizando os dados do conjunto de treino definido na seção anterior. A variável dependente é o retorno logarítmico diário do Ibovespa (\texttt{br\_ibov\_ret\_log}) e as covariáveis são as mesmas variáveis transformadas utilizadas no modelo OLS.
+
+A estimação do GAM envolveu duas etapas de otimização sequenciais, ambas orientadas pelo MAE no conjunto de teste, para evitar que as escolhas de configuração favoreçam o ajuste \textit{in-sample}.
+
+\subsection{Seleção do número de splines (\textit{n\_splines})}
+
+O hiperparâmetro \textit{n\_splines} determina o número de funções de base aplicadas em cada suavização, controlando a flexibilidade das curvas ajustadas. Valores reduzidos produzem funções mais suaves, com menor risco de sobreajuste; valores maiores permitem ao modelo capturar padrões mais complexos, ao custo de maior variância nas estimativas.
+
+Para identificar o valor ótimo, foi realizada uma busca sistemática no conjunto $\{5, 10, 15, 20, 25\}$, treinando o GAM com todos os termos do tipo $s(\cdot)$ e avaliando o MAE no conjunto de teste para cada configuração. O valor com menor MAE \textit{out-of-sample} foi selecionado e utilizado nas etapas subsequentes.
+
+\subsection{Seleção do tipo de termo por variável (\textit{smooth} vs.\ linear)}
+
+Com o $n\_splines$ ótimo definido, foi conduzida uma análise variável a variável para determinar se a representação não linear — por meio de spline $s(\cdot)$ — gerava ganho de desempenho em relação a um termo linear $l(\cdot)$. Para cada variável $j$, o MAE \textit{out-of-sample} foi calculado mantendo-se aquela variável com o tipo em avaliação ($s$ ou $l$) e todas as demais com suas configurações de referência ($s$ com $n\_splines$ ótimo). O ganho não linear foi definido como:
+
+\begin{equation}\hfill
+\Delta\text{MAE}_j = \text{MAE}_{l(j)} - \text{MAE}_{s(j)}
+\label{eq:ganho_nao_linear}
+\end{equation}
+
+Onde $\text{MAE}_{l(j)}$ e $\text{MAE}_{s(j)}$ representam o erro médio absoluto no conjunto de teste ao se utilizar, respectivamente, termo linear e termo suavizado para a variável $j$. Valores positivos de $\Delta\text{MAE}_j$ indicam que a não linearidade beneficia o ajuste; valores negativos ou nulos indicam que o termo linear é suficiente, e a variável é então representada como $l(\cdot)$.
+
+O modelo GAM final foi construído com $s(\cdot, \, n\_splines=n^*)$ para variáveis com $\Delta\text{MAE}_j > 0$ e $l(\cdot)$ para as demais, simplificando o modelo sem custo preditivo. Os resultados do processo de otimização e o desempenho do modelo final são apresentados no Capítulo de Resultados.
+
 % ----------------------------------------------------------
 % Capitulo com exemplos de comandos inseridos de arquivo externo
 % ----------------------------------------------------------
@@ -769,10 +809,63 @@ ARIMA(4, 0, 3) & --- & 0{,}012225 & 0{,}017085 \\ \hline
 OLS / MQO & 0{,}2086 & 0{,}011093 & 0{,}015239 \\ \hline
 GAM & 0{,}2935 & 0{,}010671 & 0{,}014398 \\ \hline
 \end{tabular}
-\caption{Comparativo de métricas de avaliação dos modelos estimados}\label{tab:metricas}
+\caption{Métricas de avaliação dos modelos estimados --- linha de base \textit{in-sample} (conjunto completo)}\label{tab:metricas}
 \end{table}
 
-Essas falhas nos pressupostos do MQO justificam o avanço para modelos mais sofisticados, como os Generalized Additive Models (GAM), que serão empregados na próxima fase.
+O processo de otimização do GAM seguiu o procedimento descrito na Seção~\ref{sec:gam_otimizacao}. A Tabela~\ref{tab:gam_nsplines} apresenta os resultados da busca pelo número ótimo de splines, avaliando R² no conjunto de treino e MAE no conjunto de teste para cada valor do grid.
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{$n\_splines$} & \textbf{R²\_treino} & \textbf{MAE\_teste} \\ \hline
+5  & 0{,}2077 & 0{,}010372 \\ \hline
+\textbf{10} & \textbf{0{,}2732} & \textbf{0{,}010156} \\ \hline
+15 & 0{,}2844 & 0{,}010190 \\ \hline
+20 & 0{,}2919 & 0{,}010246 \\ \hline
+25 & 0{,}2964 & 0{,}010375 \\ \hline
+\end{tabular}
+\caption{Busca pelo número ótimo de splines no GAM: R² no treino e MAE no teste (negrito = configuração selecionada)}\label{tab:gam_nsplines}
+\end{table}
+
+O valor $n^* = 10$ produziu o menor MAE no conjunto de teste, sendo selecionado para o modelo final. Observa-se que valores crescentes de $n\_splines$ continuam elevando o R² de treino, mas deterioram o desempenho fora da amostra — padrão característico de sobreajuste que justifica o uso do conjunto de teste como critério de seleção.
+
+Em seguida, foi conduzida a análise do tipo de termo por variável. A Tabela~\ref{tab:gam_termos} apresenta o MAE \textit{out-of-sample} para cada variável sob a representação linear $l(\cdot)$ e suavizada $s(\cdot)$, bem como o ganho não linear $\Delta\text{MAE}_j$ definido na Equação~\ref{eq:ganho_nao_linear}.
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Variável} & \textbf{MAE com $l(\cdot)$} & \textbf{MAE com $s(\cdot)$} & \textbf{$\Delta$MAE} & \textbf{Tipo} \\ \hline
+$\Delta$EMBI+ (Risco-País)   & 0{,}010386 & 0{,}010156 & $+$0{,}000230 & $s(\cdot)$ \\ \hline
+$\Delta$Câmbio (Dólar)       & 0{,}010173 & 0{,}010156 & $+$0{,}000017 & $s(\cdot)$ \\ \hline
+$\Delta$Expectativa IPCA     & 0{,}010159 & 0{,}010156 & $+$0{,}000003 & $s(\cdot)$ \\ \hline
+Retorno PIB                  & 0{,}010149 & 0{,}010156 & $-$0{,}000007 & $l(\cdot)$ \\ \hline
+$\Delta$Selic                & 0{,}010123 & 0{,}010156 & $-$0{,}000033 & $l(\cdot)$ \\ \hline
+IPCA                         & 0{,}010098 & 0{,}010156 & $-$0{,}000058 & $l(\cdot)$ \\ \hline
+\end{tabular}
+\caption{Análise \textit{smooth} vs.\ linear por variável: $\Delta\text{MAE}_j > 0$ indica ganho não linear (tipo $s(\cdot)$ selecionado)}\label{tab:gam_termos}
+\end{table}
+
+Risco-país e câmbio foram as variáveis com maior ganho não linear, confirmando a existência de relações assimétricas e de saturação que o modelo linear não captura. As demais variáveis — IPCA, Selic e PIB — foram mantidas como termos lineares, simplificando o modelo sem custo preditivo.
+
+Para uma comparação sistemática dos modelos, a Tabela~\ref{tab:metricas_split} apresenta as métricas \textit{in-sample} da linha de base lado a lado com a avaliação \textit{out-of-sample} no conjunto de teste (2020--2024).
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Modelo} & \textbf{R²\_base} & \textbf{MAE\_base} & \textbf{R²\_teste} & \textbf{MAE\_teste} & \textbf{RMSE\_teste} \\ \hline
+ARIMA(4, 0, 3) & ---      & 0{,}012225 & ---      & ---        & ---        \\ \hline
+OLS / MQO      & 0{,}2086 & 0{,}011093 & 0{,}2339 & 0{,}010351 & 0{,}014971 \\ \hline
+GAM (final)    & 0{,}2935 & 0{,}010671 & 0{,}2938 & 0{,}010156 & 0{,}014375 \\ \hline
+\end{tabular}
+\caption{Comparativo completo de métricas: linha de base \textit{in-sample} (conjunto completo) e avaliação \textit{out-of-sample} (teste: jan/2020--jul/2024)}\label{tab:metricas_split}
+\end{table}
+
+Dois resultados se destacam. Primeiro, o GAM manteve R² praticamente idêntico entre treino (0{,}2732) e teste (0{,}2938), indicando ausência de sobreajuste e boa capacidade de generalização para um período estruturalmente distinto do utilizado na estimação. Segundo, o OLS também apresentou R² superior no conjunto de teste (0{,}2339) em relação ao valor \textit{in-sample} (0{,}2086), sugerindo que as relações lineares entre câmbio, risco-país e retornos do Ibovespa se intensificaram no período pós-2020 — marcado pela pandemia de COVID-19 e pelo ciclo de aperto monetário.
+
+Essas falhas nos pressupostos do MQO reforçam o ganho explicativo obtido pelo modelo GAM. Para além das métricas agregadas, a análise dos efeitos marginais por meio de gráficos de dependência parcial (PDPs) permite compreender as relações não lineares capturadas pelo modelo.
 
 
 \begin{table}[ht!]
@@ -791,15 +884,34 @@ Variação do risco-país (EMBI+ Brasil) & 1{,}1441 \\ \hline
 \caption{Fatores de Inflação da Variância (VIF) para as variáveis explicativas}\label{tab:vif}
 \end{table}
 
-Para técnicas de explicação, pode-se considerar a técnica SHAP, baseada na teoria dos valores de Shapley, originalmente desenvolvida na teoria dos jogos cooperativos. SHAP atribui a cada variável explicativa uma contribuição média para a previsão individual feita pelo modelo, de forma justa e consistente \cite{lundberg2018consistentfeatureattributiontree}.
+Os gráficos de dependência parcial (PDPs) estimados para o modelo GAM final permitem visualizar o efeito marginal de cada variável macroeconômica sobre os retornos do Ibovespa, mantendo as demais constantes. A Figura~\ref{fig:gam_pdps} apresenta os PDPs das seis variáveis preditoras, com a faixa sombreada representando o intervalo de confiança de 95\%. PDPs mostram como a predição média do modelo varia ao longo da distribuição de uma variável, revelando não linearidades, assimetrias e efeitos de saturação \cite{Friedman2001Machine}.
 
-No presente trabalho, os valores de SHAP poderão ser aplicados aos modelos GAM e Causal Forest para explicar quais variáveis macroeconômicas têm maior influência nos retornos do Ibovespa em diferentes contextos, em quais observações específicas (por exemplo, semanas de alta inflação ou forte depreciação cambial) a taxa Selic ou o risco-país exerceram maior impacto e, além disso, a variação da direção e magnitude do efeito da mesma variável entre diferentes janelas temporais ou regimes econômicos.
+\begin{figure}[htb]
+    \begin{center}
+        \includegraphics[scale=0.32]{gam_pdps.png}
+    \end{center}
+    \caption{\label{fig:gam_pdps}Partial Dependence Plots (PDPs) do GAM Final --- efeito marginal de cada variável sobre o retorno logarítmico do Ibovespa (Fonte: Autor)}
+\end{figure}
 
-Gráficos de dispersão SHAP serão utilizados para visualizar a relação entre o valor de uma variável e sua contribuição individual para o retorno estimado, permitindo análises como: "o aumento do risco-país gera efeito negativo crescente até certo limite, e depois se estabiliza?"
+Os resultados revelam padrões não lineares com interpretação econômica direta:
 
-Já os gráficos de dependência parcial (PDPs) serão aplicados principalmente ao modelo GAM, cuja estrutura aditiva permite uma decomposição natural dos efeitos marginais. PDPs mostram como a previsão média do modelo muda ao variar uma única variável explicativa, mantendo as demais constantes \cite{Friedman2001Machine}.
+\begin{itemize}
 
-Esses gráficos são especialmente úteis para visualizar não linearidades (ex: efeito saturado ou em forma de U da inflação sobre os retornos), comparar efeitos marginais entre diferentes variáveis sob a mesma escala e validar se os efeitos estimados são economicamente coerentes (por exemplo, aumento da Selic reduz o retorno esperado, exceto em períodos de hiperinflação).
+\item \textbf{Variação do câmbio ($\Delta$Câmbio):} apresenta a relação não linear mais pronunciada do modelo. Depreciações cambiais já exercem efeito negativo significativo desde magnitudes moderadas, e esse efeito se intensifica de forma crescente em episódios de grande desvalorização, evidenciando assimetria: o impacto negativo de uma desvalorização é substancialmente maior em módulo do que o efeito positivo de uma apreciação equivalente. Esse comportamento é coerente com a hipótese de fuga de capitais em momentos de estresse cambial, em que choques de desvalorização elevam a percepção de risco de forma não proporcional.
+
+\item \textbf{Variação do risco-país ($\Delta$EMBI+):} exibe relação negativa e não linear, com saturação parcial em choques extremos. Aumentos no risco-país reduzem os retornos do Ibovespa de forma consistente, mas a curva se torna progressivamente mais plana para variações muito elevadas (acima de +150 pontos), sugerindo que o mercado incorpora parcialmente esses choques de forma antecipada. Reduções no risco-país (valores negativos) têm efeito positivo relevante. Esse padrão seria invisível ao modelo OLS, cujo coeficiente captura apenas o efeito médio ao longo de toda a distribuição.
+
+\item \textbf{IPCA:} o efeito é modesto e apresenta leve forma de U invertido. Inflação em patamares moderados (0{,}5--1{,}5\% ao mês) apresenta pequeno efeito positivo sobre os retornos, possivelmente refletindo correlação com aquecimento econômico; para valores muito elevados, o efeito tende a se inverter. A banda de confiança larga indica que o IPCA possui baixa importância individual no horizonte diário.
+
+\item \textbf{Retorno do PIB:} relação positiva e aproximadamente linear, compatível com a teoria de que crescimento econômico acompanha valorização do mercado acionário. A ausência de ganho não linear nesta variável, identificada na etapa de otimização (Seção~\ref{sec:gam_otimizacao}), é confirmada visualmente pela forma quase linear do PDP.
+
+\item \textbf{Variação da Selic ($\Delta$Selic) e $\Delta$Expectativa IPCA:} ambas apresentam efeitos marginais reduzidos e bandas de confiança largas. No horizonte diário, variações marginais na Selic já são tipicamente antecipadas pelo mercado, o que é consistente com a hipótese de eficiência informacional na forma semi-forte.
+
+\end{itemize}
+
+Em conjunto, os PDPs reforçam que câmbio e risco-país são os canais dominantes de transmissão macroeconômica para o mercado acionário brasileiro, com dinâmicas não lineares que o modelo OLS não consegue capturar. O efeito cambial é assimétrico e crescente; o efeito do risco-país apresenta saturação em choques extremos. Esses padrões constituem achados relevantes do ponto de vista interpretativo, ilustrando o ganho de transparência que modelos aditivos como o GAM oferecem em relação a abordagens puramente lineares.
+
+Para os próximos modelos (BSTS e Causal Forests), será aplicada a técnica SHAP (\textit{SHapley Additive exPlanations}), baseada na teoria dos valores de Shapley \cite{lundberg2018consistentfeatureattributiontree}. O SHAP permitirá quantificar a contribuição de cada variável para predições individuais, identificando como a importância relativa das covariáveis varia entre diferentes regimes econômicos — por exemplo, em períodos de alta inflação ou choques cambiais abruptos.
 
 % ---
 % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
@@ -835,15 +947,15 @@ atividade 5 &    &     &           &     &     &     x     \\
 \end{table}
 
 \begin{itemize}
-\item \textbf{atividade 1:} Nesta atividade, será implementado o modelo GAM, com o objetivo de capturar as relações não-lineares que o modelo MQO não foi capaz de representar. A análise se concentrará na interpretação dos efeitos marginais por meio de gráficos de dependência parcial (PDP) e na comparação do desempenho em termos de $R^2$ e critérios de informação (AIC/BIC) com o modelo linear.
+\item \textbf{atividade 1 (concluída):} Implementação e otimização do modelo GAM para capturar relações não lineares entre as variáveis macroeconômicas e os retornos do Ibovespa. O processo incluiu seleção do número ótimo de splines por validação \textit{out-of-sample} ($n^* = 10$), análise de termos suaves versus lineares por variável e avaliação dos efeitos marginais via gráficos de dependência parcial (PDPs). O modelo obteve R² de 0,2938 no conjunto de teste (2020--2024), confirmando generalização sem sobreajuste.
 
-\item \textbf{atividade 2:} Esta etapa visa estimar o modelo BSTS, com o intuito de decompor a série temporal dos retornos do Ibovespa em componentes estruturais (como tendência e regressão). Será utilizada a análise de inclusão de variáveis ao longo do tempo, permitindo avaliar a relevância dinâmica dos preditores e suas mudanças de impacto sob diferentes regimes de mercado.
+\item \textbf{atividade 2:} Esta etapa visa estimar o modelo BSTS (\textit{Bayesian Structural Time Series}), com o intuito de decompor a série temporal dos retornos do Ibovespa em componentes estruturais (como tendência e regressão). Será utilizada a análise de inclusão de variáveis ao longo do tempo, permitindo avaliar a relevância dinâmica dos preditores e suas mudanças de impacto sob diferentes regimes de mercado.
 
-\item \textbf{atividade 3:} Aqui, será aplicado o modelo Causal Forest, com foco na inferência causal heterogênea. Será definido um “tratamento” exógeno (como um choque no risco-país) para estimar seu efeito causal sobre os retornos do Ibovespa. A análise também identificará variações desse efeito condicional em diferentes contextos econômicos.
+\item \textbf{atividade 3:} Aqui, será aplicado o modelo Causal Forest, com foco na inferência causal heterogênea. O “tratamento” definido são variações cambiais superiores ao percentil 75 em valor absoluto, e o modelo estimará o efeito causal condicional (CATE) sobre os retornos do Ibovespa em diferentes contextos macroeconômicos (níveis de Selic, risco-país, entre outros).
 
-\item \textbf{atividade 4:} Na quarta atividade, será realizada uma análise comparativa entre todos os modelos utilizados ao longo do trabalho (ARIMA, MQO, GAM, BSTS e Causal Forest). Serão consolidadas métricas de desempenho preditivo e interpretabilidade. A técnica SHAP será aplicada sobre o modelo mais complexo para validar a importância das variáveis de forma transparente.
+\item \textbf{atividade 4:} Análise comparativa entre todos os modelos estimados ao longo do trabalho (ARIMA, MQO, GAM, BSTS e Causal Forest). Serão consolidadas métricas de desempenho preditivo e interpretabilidade. A técnica SHAP será aplicada sobre os modelos mais complexos para quantificar a contribuição individual de cada variável em diferentes regimes.
 
-\item \textbf{atividade 5:} Esta última etapa será dedicada à consolidação da monografia. Incluirá a redação final dos capítulos de metodologia e resultados, a elaboração da conclusão geral do trabalho, a revisão integral do texto e a preparação da apresentação para a banca avaliadora.
+\item \textbf{atividade 5:} Consolidação da monografia: redação final dos capítulos de metodologia e resultados, elaboração da conclusão geral, revisão integral do texto e preparação da apresentação para a banca avaliadora.
 
 \end{itemize}
 
@@ -857,15 +969,15 @@ Os resultados obtidos até esta etapa confirmam a importância de um tratamento 
 
 Apesar de sua relevância teórica e interpretabilidade direta, os modelos econométricos tradicionais mostraram limitações importantes. O modelo ARIMA, por ser univariado, não incorpora variáveis explicativas externas e apenas projeta a série com base em sua própria dinâmica. Já o modelo MQO, embora tenha permitido identificar relações estatisticamente significativas (como os efeitos negativos do câmbio e do risco-país), apresentou baixa capacidade preditiva (R² = 0,209) e falhas nos pressupostos fundamentais, como homocedasticidade e normalidade dos resíduos. Além disso, ambos os modelos são incapazes de capturar não linearidades complexas, efeitos interativos e mudanças estruturais ao longo do tempo, características recorrentes em mercados financeiros.
 
-Diante dessas limitações, torna-se evidente a necessidade de incorporar modelos mais flexíveis e robustos, capazes de capturar a complexidade do comportamento do mercado sem abrir mão da transparência interpretativa. A próxima fase do projeto se concentrará na aplicação de técnicas de inteligência artificial interpretável, que representam um avanço tanto do ponto de vista metodológico quanto prático:
+A aplicação do modelo GAM confirmou empiricamente a capacidade de modelos aditivos de capturar relações não lineares que os modelos tradicionais não detectam. Com R² de 0{,}2938 no conjunto de teste (2020--2024), o GAM demonstrou não apenas ganho explicativo em relação ao MQO (R² = 0{,}2086 \textit{in-sample}), mas também boa capacidade de generalização para um período estruturalmente distinto do utilizado na estimação. A análise dos gráficos de dependência parcial (PDPs) revelou que câmbio e risco-país exercem efeitos assimétricos e não lineares sobre os retornos do Ibovespa: depreciações cambiais intensas têm impacto negativo crescente e desproporcional, enquanto aumentos no risco-país apresentam saturação parcial em choques extremos. O processo de otimização indicou que IPCA, Selic e PIB se comportam de forma aproximadamente linear no horizonte diário, resultado coerente com a hipótese de eficiência informacional para essas variáveis. A estabilidade do R² entre treino e teste evidencia ausência de sobreajuste, reforçando a validade do modelo como instrumento explicativo para além do período de estimação.
 
-O GAM (Generalized Additive Model) permite modelar relações não lineares entre variáveis de forma transparente, decompondo efeitos marginais com funções suavizadas. Isso possibilita, por exemplo, identificar comportamentos econômicos com pontos de inflexão ou efeitos saturados, o que não seria detectado por uma regressão linear. O BSTS (Bayesian Structural Time Series) oferecerá uma abordagem probabilística e temporalmente sensível, permitindo decompor a série em tendência, sazonalidade e regressão com covariáveis. Sua estrutura bayesiana facilita a inclusão de incertezas e o rastreamento da importância dinâmica dos preditores ao longo do tempo. O Causal Forest, por sua vez, será utilizado para investigar efeitos causais que variam entre diferentes contextos, possibilitando estimar como mudanças externas (como alterações súbitas na taxa de juros ou aumentos no risco-país) afetam o comportamento dos retornos do Ibovespa. A técnica permite identificar subgrupos com respostas diferenciadas, indo além das médias globais e revelando nuances causais mais sofisticadas.
+As próximas etapas concentram-se na estimação dos modelos BSTS (\textit{Bayesian Structural Time Series}) e Causal Forests, cujos dados já foram preparados e exportados. O BSTS introduzirá uma perspectiva dinâmica e probabilística, decompondo os retornos do Ibovespa em componentes estruturais e permitindo avaliar como a relevância das variáveis macroeconômicas evolui ao longo do tempo — em especial sob diferentes regimes de política monetária. O Causal Forest investigará a heterogeneidade causal dos choques: utilizando variações cambiais superiores ao percentil 75 como variável de tratamento, o modelo estimará o efeito causal condicional (CATE) sobre os retornos, identificando se esse efeito se altera entre períodos de alta e baixa Selic, diferentes níveis de risco-país ou outros contextos macroeconômicos. A técnica SHAP será aplicada aos resultados desses modelos para quantificar a contribuição individual de cada variável em diferentes regimes, complementando os PDPs obtidos no GAM.
 
-Ao utilizar essas abordagens, o projeto buscará superar os limites da modelagem linear tradicional, entregando resultados que sejam não apenas estatisticamente robustos, mas também compreensíveis e acionáveis para analistas, investidores e formuladores de política econômica. Além disso, o uso de técnicas como SHAP e PDP contribuirá para validar e visualizar os efeitos estimados, reforçando o compromisso do trabalho com a explicabilidade e a transparência dos modelos.
+Ao combinar modelos lineares tradicionais, funções suavizadas e inferência causal heterogênea, o projeto supera progressivamente os limites da modelagem econométrica clássica, entregando resultados que são não apenas estatisticamente robustos, mas também interpretáveis e acionáveis para analistas, investidores e formuladores de política econômica.
 
 Além da contribuição metodológica, este trabalho possui relevância científica específica para o campo de economias emergentes. O Brasil apresenta dinâmicas de risco, câmbio e resposta a choques externos que diferem estruturalmente de mercados desenvolvidos, tornando indispensável que os modelos aplicados sejam não apenas acurados, mas também interpretáveis o suficiente para que analistas e gestores possam identificar quando e por que um modelo falha nesse ambiente. A capacidade de auditar o comportamento do modelo diante de episódios como crises cambiais, choques políticos ou reversões abruptas de política monetária representa, em si, um resultado científico relevante — e é precisamente essa capacidade que a abordagem de inteligência artificial interpretável proposta neste trabalho busca entregar.
 
-Conclui-se, portanto, que o uso de IA interpretável representa não apenas uma evolução técnica, mas também uma exigência prática e ética em ambientes financeiros complexos. O projeto avança agora para uma fase decisiva, em que a combinação entre flexibilidade preditiva e clareza interpretativa poderá revelar novos insights sobre os fatores macroeconômicos que moldam o comportamento do mercado brasileiro.
+Conclui-se, portanto, que o uso de IA interpretável representa não apenas uma evolução técnica, mas também uma exigência prática e ética em ambientes financeiros complexos. Os resultados obtidos até o presente — especialmente os achados do GAM sobre a assimetria cambial e a saturação do risco-país — já evidenciam o potencial desta abordagem para revelar estruturas econômicas que permanecem ocultas à modelagem linear. Com a estimação do BSTS e do Causal Forest, o trabalho avança para uma fase em que a dimensão dinâmica e causal dessas relações poderá ser investigada com maior profundidade, completando o quadro comparativo entre os modelos explicativos propostos.
 
 % ----------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS

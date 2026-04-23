@@ -6,9 +6,12 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {table}{\numberline {1}{\ignorespaces Transformações aplicadas às variáveis da base de dados}}{31}{table.7.1}%
-\contentsline {table}{\numberline {2}{\ignorespaces Comparativo de métricas de avaliação dos modelos estimados}}{33}{table.7.2}%
-\contentsline {table}{\numberline {3}{\ignorespaces Fatores de Inflação da Variância (VIF) para as variáveis explicativas}}{33}{table.7.3}%
+\contentsline {table}{\numberline {1}{\ignorespaces Transformações aplicadas às variáveis da base de dados}}{33}{table.7.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces Métricas de avaliação dos modelos estimados --- linha de base \textit {in-sample} (conjunto completo)}}{35}{table.7.2}%
+\contentsline {table}{\numberline {3}{\ignorespaces Busca pelo número ótimo de splines no GAM: R² no treino e MAE no teste (negrito = configuração selecionada)}}{35}{table.7.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces Análise \textit {smooth} vs.\ linear por variável: $\Delta {MAE}_j > 0$ indica ganho não linear (tipo $s(\cdot )$ selecionado)}}{36}{table.7.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces Comparativo completo de métricas: linha de base \textit {in-sample} (conjunto completo) e avaliação \textit {out-of-sample} (teste: jan/2020--jul/2024)}}{36}{table.7.5}%
+\contentsline {table}{\numberline {6}{\ignorespaces Fatores de Inflação da Variância (VIF) para as variáveis explicativas}}{37}{table.7.6}%
 \addvspace {10pt}
-\contentsline {table}{\numberline {4}{\ignorespaces Tabela de cronograma de atividades.}}{35}{table.8.4}%
+\contentsline {table}{\numberline {7}{\ignorespaces Tabela de cronograma de atividades.}}{39}{table.8.7}%
 \addvspace {10pt}
