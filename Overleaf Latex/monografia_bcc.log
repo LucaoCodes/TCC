@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.14)  14 APR 2026 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.14)  22 APR 2026 11:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -715,9 +715,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 ] [8
 
 
-] (monografia_bcc.toc) [9
+] (monografia_bcc.toc [9
 
-] [10]
+]) [10]
 Cap\'{\i }tulo 1.
 [11
 
@@ -765,47 +765,195 @@ LaTeX Warning: Reference `tabela:estatisticas_descritivas' on page 26 undefined 
 [26
 
 ] [27] [28]
-Cap\'{\i }tulo 6.
-[29
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:685: Undefined control sequence.
+<recently read> \text 
+                      
+l.685 O corte temporal adotado foi $\text
+                                         {01/01/2020}$, dividindo os dados em:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-] [30]
-Cap\'{\i }tulo 7.
-<mapa-de-calor-transformada-4.png, id=366, 1284.8pt x 1030.85126pt>
-File: mapa-de-calor-transformada-4.png Graphic file (type png)
-<use mapa-de-calor-transformada-4.png>
-Package pdftex.def Info: mapa-de-calor-transformada-4.png  used on input line 736.
-(pdftex.def)             Requested size: 449.68674pt x 360.80334pt.
-<acf-pacf.png, id=367, 1481.535pt x 460.72125pt>
-File: acf-pacf.png Graphic file (type png)
-<use acf-pacf.png>
-Package pdftex.def Info: acf-pacf.png  used on input line 746.
-(pdftex.def)             Requested size: 444.46393pt x 138.21744pt.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 698.
+(C:\Users\Lucao\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Overfull \hbox (0.13501pt too wide) in paragraph at lines 698--699
+[]\T1/ptm/m/n/12 O Mo-delo Adi-tivo Ge-ne-ra-li-zado (GAM) foi es-ti-mado com a bi-bli-o-teca \T1/pcr/m/n/12 pyGAM \T1/ptm/m/n/12 (Python),
+ []
+
+[29]
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <14.4> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 702.
+
+Overfull \hbox (41.1626pt too wide) in paragraph at lines 706--707
+[]\T1/ptm/m/n/12 Para iden-ti-fi-car o va-lor �timo, foi re-a-li-zada uma busca sis-te-m�-tica no con-junto $\OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 5\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 15\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 20\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 25\OMS/cmsy/m/n/12 g$\T1/ptm/m/n/12 ,
+ []
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:713: Undefined control sequence.
+l.713 \Delta\text
+                 {MAE}_j = \text{MAE}_{l(j)} - \text{MAE}_{s(j)}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:713: Undefined control sequence.
+l.713 \Delta\text{MAE}_j = \text
+                                {MAE}_{l(j)} - \text{MAE}_{s(j)}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:713: Undefined control sequence.
+l.713 ...a\text{MAE}_j = \text{MAE}_{l(j)} - \text
+                                                  {MAE}_{s(j)}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:717: Undefined control sequence.
+<recently read> \text 
+                      
+l.717 Onde $\text
+                 {MAE}_{l(j)}$ e $\text{MAE}_{s(j)}$ representam o erro méd...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:717: Undefined control sequence.
+<recently read> \text 
+                      
+l.717 Onde $\text{MAE}_{l(j)}$ e $\text
+                                       {MAE}_{s(j)}$ representam o erro méd...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:717: Undefined control sequence.
+l.717 ...el $j$. Valores positivos de $\Delta\text
+                                                  {MAE}_j$ indicam que a nã...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:719: Undefined control sequence.
+l.719 ...es=n^*)$ para variáveis com $\Delta\text
+                                                  {MAE}_j > 0$ e $l(\cdot)$ ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[30]
+Cap\'{\i }tulo 6.
 [31
 
-] [32 <./mapa-de-calor-transformada-4.png> <./acf-pacf.png>] [33] [34]
+] [32]
+Cap\'{\i }tulo 7.
+<mapa-de-calor-transformada-4.png, id=398, 1284.8pt x 1030.85126pt>
+File: mapa-de-calor-transformada-4.png Graphic file (type png)
+<use mapa-de-calor-transformada-4.png>
+Package pdftex.def Info: mapa-de-calor-transformada-4.png  used on input line 776.
+(pdftex.def)             Requested size: 449.68674pt x 360.80334pt.
+<acf-pacf.png, id=399, 1481.535pt x 460.72125pt>
+File: acf-pacf.png Graphic file (type png)
+<use acf-pacf.png>
+Package pdftex.def Info: acf-pacf.png  used on input line 786.
+(pdftex.def)             Requested size: 444.46393pt x 138.21744pt.
+[33
+
+] [34 <./mapa-de-calor-transformada-4.png> <./acf-pacf.png>] [35]
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:833: Undefined control sequence.
+l.833 ...bem como o ganho não linear $\Delta\text
+                                                  {MAE}_j$ definido na Equa�...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:847: Undefined control sequence.
+<argument> ...linear por variável: $\Delta \text 
+                                                  {MAE}_j > 0$ indica ganho ...
+l.847 ...ão linear (tipo $s(\cdot)$ selecionado)}
+                                                  \label{tab:gam_termos}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 847.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 847.
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:847: Undefined control sequence.
+<argument> ...linear por variável: $\Delta \text 
+                                                  {MAE}_j > 0$ indica ganho ...
+l.847 ...ão linear (tipo $s(\cdot)$ selecionado)}
+                                                  \label{tab:gam_termos}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:847: Undefined control sequence.
+<argument> ...linear por variável: $\Delta \text 
+                                                  {MAE}_j > 0$ indica ganho ...
+l.847 ...ão linear (tipo $s(\cdot)$ selecionado)}
+                                                  \label{tab:gam_termos}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[36]
+<gam_pdps.png, id=430, 1293.1512pt x 665.8476pt>
+File: gam_pdps.png Graphic file (type png)
+<use gam_pdps.png>
+Package pdftex.def Info: gam_pdps.png  used on input line 891.
+(pdftex.def)             Requested size: 413.81683pt x 213.07558pt.
+ [37 <./gam_pdps.png>] [38]
 Cap\'{\i }tulo 8.
 
-c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:820: Class memoir Error: Font command \bf is not supported.
+c:/Users/Lucao/Documentos/Dev/TCC/Overleaf Latex/monografia_bcc.tex:932: Class memoir Error: Font command \bf is not supported.
 
 See the memoir class documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.820 {\bf
+l.932 {\bf
            Atividade} &     Mês 1 &     Mês 2 &     Mês 3 &     Mês 4 & ...
 Use \textbf, or \bfseries{...}, or the oldfontcommands option
 
-[35
+[39
 
-]
+] [40]
 Cap\'{\i }tulo 9.
-[36
+[41
 
 ] (monografia_bcc.bbl (monografia_bcc.brf)
 \tf@brf=\write5
 \openout5 = `monografia_bcc.brf'.
 
- [37]
+ [42]
 bibitemlist
 
 monografia_bcc.bbl:16: LaTeX Error: Unicode character ∗ (U+2217)
@@ -820,7 +968,7 @@ l.16
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[38
+[43
 
 ]
 monografia_bcc.bbl:155: Misplaced alignment tab character &.
@@ -835,7 +983,7 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[39]) [40]
+[44]) [45]
 \tf@lof=\write6
 \openout6 = `monografia_bcc.lof'.
 
@@ -860,20 +1008,20 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `monografia_bcc.brf' has not changed.
-(rerunfilecheck)             Checksum: 57873C59CA58FDA463D8FD0E72CBFCC3;2293.
+(rerunfilecheck)             Checksum: A5506E944767A3209D43EEB162E6A1BB;2294.
  ) 
 Here is how much of TeX's memory you used:
- 16213 strings out of 467871
- 262245 string characters out of 5418376
- 711771 words of memory out of 5000000
- 44681 multiletter control sequences out of 15000+600000
- 670368 words of font info for 82 fonts, out of 8000000 for 9000
+ 16298 strings out of 467871
+ 263444 string characters out of 5418376
+ 717568 words of memory out of 5000000
+ 44733 multiletter control sequences out of 15000+600000
+ 674319 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,107p,1660b,722s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on monografia_bcc.pdf (41 pages, 802027 bytes).
+ 99i,13n,107p,1746b,722s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Lucao/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on monografia_bcc.pdf (46 pages, 1144619 bytes).
 PDF statistics:
- 657 PDF objects out of 1000 (max. 8388607)
- 148 named destinations out of 1000 (max. 500000)
- 348 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 743 PDF objects out of 1000 (max. 8388607)
+ 162 named destinations out of 1000 (max. 500000)
+ 385 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,7 +6,8 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {1}{\ignorespaces Mapa de Calor - Correlação das Variáveis Transformadas (Fonte: Autor)}}{32}{figure.7.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Gráficos ACF e PACF da série transformada (Fonte: Autor)}}{32}{figure.7.2}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Mapa de Calor - Correlação das Variáveis Transformadas (Fonte: Autor)}}{34}{figure.7.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Gráficos ACF e PACF da série transformada (Fonte: Autor)}}{34}{figure.7.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Partial Dependence Plots (PDPs) do GAM Final --- efeito marginal de cada variável sobre o retorno logarítmico do Ibovespa (Fonte: Autor)}}{37}{figure.7.3}%
 \addvspace {10pt}
 \addvspace {10pt}
