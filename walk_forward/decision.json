@@ -1,0 +1,9 @@
+{
+  "criterion": "std(R²_GAM) < 0.05",
+  "std_r2_gam": 0.0864,
+  "mean_r2_gam": 0.2435,
+  "threshold": 0.05,
+  "ganho": false,
+  "outcome": "ROLLBACK — alta variância entre dobras",
+  "timestamp": "2026-04-28T21:14:39.389421"
+}

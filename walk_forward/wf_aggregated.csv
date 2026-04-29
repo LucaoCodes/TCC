@@ -1,0 +1,4 @@
+modelo,r2_test_mean,r2_test_std,mae_test_mean,mae_test_std,rmse_test_mean,rmse_test_std
+BSTS,0.113,0.1264,0.0108,0.0013,0.0144,0.0025
+GAM,0.2435,0.0864,0.0101,0.0013,0.0133,0.0023
+OLS,0.1788,0.0631,0.0105,0.0016,0.0139,0.0028
