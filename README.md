@@ -29,7 +29,7 @@ O contexto de economia emergente torna o problema ainda mais relevante: o Brasil
 | Expectativa IPCA 12m | BCB / Expectativas | Primeira diferença |
 | Risco-País (EMBI+) | IPEA (`JPM366_EMBI366`) | Primeira diferença |
 
-Período de análise: **janeiro de 2000 a dezembro de 2024** (dias úteis).
+Período de análise: **novembro de 2001 a julho de 2024** (dias úteis). Split treino/teste em `2020-01-01` (treino: 2001–2019; teste: 2020–2024).
 
 ---
 
@@ -38,10 +38,12 @@ Período de análise: **janeiro de 2000 a dezembro de 2024** (dias úteis).
 | Modelo | Status | R² |
 |---|---|---|
 | ARIMA(4,0,3) | Implementado | — (univariado) |
-| OLS / MQO | Implementado | 0,209 |
-| GAM (Generalized Additive Model) | Implementado | 0,2935 |
-| BSTS (Bayesian Structural Time Series) | Planejado | — |
-| Causal Forest | Planejado | — |
+| OLS / MQO | Implementado | 0,209 (in-sample) |
+| GAM (Generalized Additive Model) | Implementado | 0,3045 (out-of-sample) |
+| BSTS (Bayesian Structural Time Series) | Implementado | 0,2436 (out-of-sample) |
+| Causal Forest | Em implementação | — |
+
+> Os valores comparativos definitivos (métricas out-of-sample sobre o split 2020–2024) estão na tabela de síntese da monografia (`tab:metricas_split`), que é a fonte autoritativa.
 
 ---
 
@@ -63,6 +65,12 @@ O notebook foi desenvolvido para rodar no **Google Colab**. Para execução loca
 
 ```bash
 pip install bcb yfinance pandas pandas-datareader statsmodels scipy plotly seaborn matplotlib ipeadatapy numpy pygam scikit-learn
+```
+
+Para os modelos do TCC 2 (BSTS e Causal Forest):
+
+```bash
+pip install orbit-ml econml
 ```
 
 ---
