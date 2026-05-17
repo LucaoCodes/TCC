@@ -6,7 +6,13 @@ REGRESSORS_SELECTED confirmados pela analise de selecao de variaveis (celula 76)
 B0: sigma_opt=0.01 (holdout 2018-2019)
 B7: embi_brasil_diff com sigma=0.1 (10x sigma_opt)
 Estimador: stan-map
+
+Uso: python src/regenera_bsts_figs.py  (a partir da raiz do projeto)
 """
+import sys, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from tcc_utils import DATA_DIR, FIGS_DIR
+
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -14,11 +20,10 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-import shutil, os
 
 # --- Dados ---
-bsts_train_raw = pd.read_csv('bsts_train.csv', index_col=0, parse_dates=True)
-bsts_test_raw  = pd.read_csv('bsts_test.csv',  index_col=0, parse_dates=True)
+bsts_train_raw = pd.read_csv(DATA_DIR / 'bsts_train.csv', index_col=0, parse_dates=True)
+bsts_test_raw  = pd.read_csv(DATA_DIR / 'bsts_test.csv',  index_col=0, parse_dates=True)
 
 TARGET   = 'br_ibov_ret_log'
 DATE_COL = 'date'
@@ -90,9 +95,9 @@ ax.set_xlabel('Data')
 ax.set_ylabel('Retorno log do Ibovespa')
 ax.legend(loc='upper right')
 plt.tight_layout()
-plt.savefig('Overleaf Latex/figs/bsts_previsao_oos.png', dpi=150, bbox_inches='tight')
+plt.savefig(FIGS_DIR / 'bsts_previsao_oos.png', dpi=150, bbox_inches='tight')
 plt.close()
-print('Salvo: Overleaf Latex/figs/bsts_previsao_oos.png')
+print(f'Salvo: {FIGS_DIR / "bsts_previsao_oos.png"}')
 
 # --- Figura 2: Decomposicao ---
 try:
@@ -132,9 +137,9 @@ try:
         ax.set_title(comp_labels.get(comp, comp))
 
     fig.suptitle(f'BSTS — Decomposicao Estrutural dos Componentes (2020-2024)', y=1.01, fontsize=13)
-    plt.savefig('Overleaf Latex/figs/bsts_decomposicao.png', dpi=150, bbox_inches='tight')
+    plt.savefig(FIGS_DIR / 'bsts_decomposicao.png', dpi=150, bbox_inches='tight')
     plt.close()
-    print('Salvo: Overleaf Latex/figs/bsts_decomposicao.png')
+    print(f'Salvo: {FIGS_DIR / "bsts_decomposicao.png"}')
 except Exception as e:
     print(f'Erro na decomposicao: {e}')
 

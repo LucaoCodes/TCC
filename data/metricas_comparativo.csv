@@ -1,0 +1,6 @@
+modelo,r2_base,mae_base,r2_teste,mae_teste,rmse_teste,extras_json
+"ARIMA(4, 0, 3)",,0.012225,,,0.017085,
+OLS / MQO,0.2086,0.011093,0.2339,0.010351,0.014971,
+GAM (final),0.2946,0.010758,0.3045,0.009997,0.014265,
+Causal Forest,,,0.2387,0.010442,0.014925,"{""ate"": -2e-06, ""ate_lb"": -0.004325, ""ate_ub"": 0.004322, ""covariates"": [""br_selic_diff"", ""br_ipca"", ""br_pib_ret_log"", ""ipca_expectativa_diff"", ""embi_brasil_diff""]}"
+BSTS (final),,,0.2436,0.010147,0.014877,"{""regressores_selecionados"": [""br_selic_diff"", ""br_dolar_diff"", ""br_ipca"", ""br_pib_ret_log"", ""ipca_expectativa_diff""], ""regressores_removidos"": [], ""sigma_opt"": 0.01, ""sigma_embi"": 0.1}"
