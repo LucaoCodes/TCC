@@ -1,0 +1,31 @@
+# Dependências do TCC — instale com: pip install -r requirements.txt
+
+# Coleta de dados
+bcb
+yfinance
+pandas-datareader
+ipeadatapy
+
+# Processamento e análise
+pandas
+numpy
+scipy
+statsmodels
+
+# Visualização
+matplotlib
+seaborn
+plotly
+
+# Modelos TCC 1
+scikit-learn
+
+# Modelos TCC 2
+pygam          # GAM
+orbit-ml       # BSTS (requer PyStan — ver docs do orbit-ml)
+econml         # Causal Forest
+
+# Execução de notebooks
+jupyter
+nbconvert
+ipykernel
