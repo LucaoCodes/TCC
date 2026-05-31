@@ -10,9 +10,10 @@ import pandas as pd
 import numpy as np
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[1]
-DATA_DIR     = PROJECT_ROOT / "data"
-FIGS_DIR     = PROJECT_ROOT / "Overleaf Latex" / "figs"
+PROJECT_ROOT  = pathlib.Path(__file__).resolve().parents[1]
+DATA_DIR      = PROJECT_ROOT / "data"
+FIGS_DIR      = PROJECT_ROOT / "Overleaf Latex" / "figs"
+CF_MODELS_DIR = DATA_DIR / "cf_models"
 
 # ── Constantes ────────────────────────────────────────────────────────────────
 DATA_INICIO         = '2000-01-01'
@@ -29,7 +30,7 @@ ARIMA_MAE_BASE  = 0.012225
 ARIMA_RMSE_BASE = 0.017085
 
 __all__ = [
-    'PROJECT_ROOT', 'DATA_DIR', 'FIGS_DIR',
+    'PROJECT_ROOT', 'DATA_DIR', 'FIGS_DIR', 'CF_MODELS_DIR',
     'DATA_INICIO', 'DATA_FIM', 'DATA_SPLIT_DATE', 'VAL_SPLIT_DATE',
     'COLUNAS_LOG_RETORNO', 'TARGET', 'USE_LOCAL_DATA',
     'ARIMA_ORDEM', 'ARIMA_MAE_BASE', 'ARIMA_RMSE_BASE',

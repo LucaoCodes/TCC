@@ -1,0 +1,13 @@
+{
+  "n_estimators": 2504,
+  "min_samples_leaf": 76,
+  "max_depth": 10,
+  "max_features": null,
+  "min_balancedness_tol": 0.3367,
+  "subforest_size": 8,
+  "ny": 100,
+  "dy": 2,
+  "ly": 0.03,
+  "r_loss_val": 0.000132,
+  "r2_pred_val": 0.1783
+}
