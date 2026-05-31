@@ -41,7 +41,7 @@ Período de análise: **novembro de 2001 a julho de 2024** (dias úteis). Split 
 | OLS / MQO | Implementado | 0,209 (in-sample) |
 | GAM (Generalized Additive Model) | Implementado | 0,3045 (out-of-sample) |
 | BSTS (Bayesian Structural Time Series) | Implementado | 0,2436 (out-of-sample) |
-| Causal Forest | Em implementação | — |
+| Causal Forest | Implementado | 0,2321 (out-of-sample) |
 
 > Os valores comparativos definitivos (métricas out-of-sample sobre o split 2020–2024) estão na tabela de síntese da monografia (`tab:metricas_split`), que é a fonte autoritativa.
 
@@ -50,28 +50,35 @@ Período de análise: **novembro de 2001 a julho de 2024** (dias úteis). Split 
 ## Estrutura do repositório
 
 ```
-TCC.ipynb                   # Notebook principal (Google Colab)
+notebooks/
+  01_coleta_tratamento.ipynb          # Coleta via APIs (BCB, IPEA, yfinance)
+  02_modelos_base_tcc1.ipynb          # ARIMA + OLS (linha de base)
+  03_eda_pre_tcc2.ipynb               # Análise exploratória
+  04_gam.ipynb                        # GAM com tuning
+  05_bsts.ipynb                       # BSTS (orbit-ml)
+  06_causal_forest.ipynb              # Causal Forest (econml)
+  07_analise_comparativa.ipynb        # Síntese comparativa de todos os modelos
+src/
+  tcc_utils.py                        # Paths, constantes e helpers compartilhados
+data/
+  br_transformado.csv                 # Série diária transformada (fonte única)
+  metricas_comparativo.csv            # Acumulador de métricas (gerado pelos notebooks)
 Overleaf Latex/
-  monografia_bcc.tex        # Documento LaTeX (ABNT / abnTeX2)
-  monografia_bcc.pdf        # PDF compilado
-  ...                       # Imagens, estilos e arquivos auxiliares
+  monografia_bcc.tex                  # Documento LaTeX (ABNT / abnTeX2)
+  figs/                               # Figuras geradas pelos notebooks
 ```
 
 ---
 
-## Como executar o notebook
+## Como executar
 
-O notebook foi desenvolvido para rodar no **Google Colab**. Para execução local, instale as dependências:
-
-```bash
-pip install bcb yfinance pandas pandas-datareader statsmodels scipy plotly seaborn matplotlib ipeadatapy numpy pygam scikit-learn
-```
-
-Para os modelos do TCC 2 (BSTS e Causal Forest):
+Instale todas as dependências de uma vez:
 
 ```bash
-pip install orbit-ml econml
+pip install -r requirements.txt
 ```
+
+Ordem de execução: `01` (apenas ao atualizar dados) → `02` → `03` → `04` → `05` → `06` → `07`. Os notebooks 02–07 leem CSVs de `data/` e não dependem de APIs externas.
 
 ---
 
