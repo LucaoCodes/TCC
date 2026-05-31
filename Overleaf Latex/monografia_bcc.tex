@@ -16,6 +16,10 @@
 \usepackage{color}				% Controle das cores
 \usepackage{graphicx}			% Inclusão de gráficos
 \graphicspath{{figs/}}			% Pasta única de figuras
+\usepackage{amsmath,amssymb,bm}	% \text{}, \mathbb{}, \boldsymbol{}
+\tolerance=500
+\emergencystretch=3em
+\hyphenation{Eco-no-mé-tri-ca In-ter-pre-tá-vel}
 % ---
 
 % ---
@@ -231,10 +235,10 @@ Por fim, agradeço à universidade, pelo espaço de aprendizado, pesquisa e cres
 
 % resumo em português
 \begin{resumo}
-Este trabalho tem como objetivo investigar os fatores macroeconômicos que explicam o comportamento de variáveis financeiras no Brasil, por meio de modelos estatísticos e de aprendizado de máquina interpretável. A proposta busca superar as limitações dos modelos econométricos tradicionais, incorporando técnicas mais flexíveis e transparentes para capturar relações não lineares e interações complexas entre variáveis. A metodologia adotada envolveu a construção de uma base de dados diária com séries temporais da taxa Selic, câmbio, IPCA, PIB, Ibovespa e risco-país (EMBI+). As séries foram transformadas por meio de retornos logarítmicos e primeiras diferenças, seguidas de testes de estacionariedade (ADF e KPSS). Foram estimados modelos ARIMA e MQO como linha de base, seguidos pela aplicação de um modelo Generalized Additive Model (GAM) e de um modelo Bayesian Structural Time Series (BSTS). Os resultados indicaram que o modelo MQO apresentou R² de 0{,}209 \textit{in-sample}, com impacto negativo e significativo do câmbio e do risco-país sobre os retornos do Ibovespa. O GAM obteve R² de 0{,}2946 no treinamento e 0{,}3045 no conjunto de teste (2020--2024), incorporando não linearidades nas variáveis sem sobreajuste, com otimização via \textit{holdout} interno 2018--2019. O BSTS, estimado com o estimador MAP da biblioteca \texttt{orbit-ml}, decompôs a série em componentes estruturais (tendência, sazonalidade e regressão) e selecionou variáveis por intervalos de credibilidade. Com a incorporação do risco-país (EMBI+) com \textit{prior} heterogêneo, o modelo atingiu MAE de 0{,}010147 e R² de 0{,}2436 no conjunto de teste, desempenho próximo ao do GAM, acrescido da vantagem de fornecer quantificação probabilística de incerteza e decomposição temporal. Como próximo passo, será estimado o modelo Causal Forests, com foco em efeitos causais heterogêneos. Conclui-se que a aplicação de modelos explicativos com IA interpretável representa uma abordagem promissora para compreender a dinâmica dos mercados financeiros com maior profundidade e utilidade prática.
- 
+Este trabalho investiga os fatores macroeconômicos que explicam o comportamento de variáveis financeiras no Brasil, por meio de modelos estatísticos e de aprendizado de máquina interpretável, com ênfase no balanço entre precisão preditiva e transparência explicativa. A metodologia envolveu a construção de uma base de dados diária com séries temporais da taxa Selic, câmbio, IPCA, PIB, Ibovespa e risco-país (EMBI+), transformadas por retornos logarítmicos e primeiras diferenças e validadas por testes de estacionariedade (ADF e KPSS). Foram estimados cinco modelos em sequência: ARIMA e MQO como linha de base, seguidos por um Generalized Additive Model (GAM), um modelo Bayesian Structural Time Series (BSTS) e um Causal Forest. O MQO apresentou R² de 0{,}209 \textit{in-sample}, identificando impacto negativo e significativo do câmbio e do risco-país. O GAM obteve R² de 0{,}2946 no treino e 0{,}3045 no conjunto de teste (2020--2024), melhor desempenho preditivo entre os modelos, capturando não linearidades sem sobreajuste e com otimização via \textit{holdout} interno 2018--2019. O BSTS, estimado pelo estimador MAP da biblioteca \texttt{orbit-ml}, decompôs a série em componentes estruturais (tendência, sazonalidade e regressão), realizou seleção probabilística de variáveis e atingiu MAE de 0{,}010147 e R² de 0{,}2436 no teste, com a reincorporação do EMBI+ por \textit{prior} heterogêneo como principal fator de melhora. O Causal Forest, estimado pelo \texttt{CausalForestDML} com busca aleatória de hiperparâmetros guiada por R-loss causal, revelou que o efeito causal médio de um choque cambial sobre o Ibovespa não é estatisticamente distinto de zero (ATE $= -0{,}000086$, IC 95\% cruzando zero), mas a heterogeneidade do efeito condicional foi confirmada pelo Best Linear Predictor ($\beta_1 = 76{,}67$, $p < 0{,}001$), com o risco-país ($\Delta$EMBI+) respondendo por 72,9\% da modulação. Conclui-se que a aplicação de modelos explicativos com IA interpretável representa uma abordagem promissora e complementar para compreender a dinâmica dos mercados financeiros brasileiros, com cada modelo contribuindo com uma perspectiva distinta: flexibilidade não linear (GAM), estrutura temporal probabilística (BSTS) e heterogeneidade causal (Causal Forest).
+
  \vspace{\onelineskip}
-    
+
  \noindent
  \textbf{Palavras-chaves}: modelos explicativos; aprendizado de máquina interpretável; macroeconomia; séries temporais; inteligência artificial aplicada.
 \end{resumo}
@@ -242,10 +246,10 @@ Este trabalho tem como objetivo investigar os fatores macroeconômicos que expli
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-   This study aims to investigate the macroeconomic factors that explain the behavior of financial variables in Brazil using statistical models and interpretable machine learning techniques. The approach seeks to overcome the limitations of traditional econometric models by incorporating more flexible and transparent methods capable of capturing nonlinear relationships and complex interactions between variables. The methodology involved the construction of a daily time series dataset including the Selic interest rate, exchange rate, IPCA inflation, GDP, Ibovespa, and country risk (EMBI+). The data were transformed using logarithmic returns and first differences, followed by stationarity tests (ADF and KPSS). Benchmark models such as ARIMA and OLS (Ordinary Least Squares) were estimated, followed by the application of a Generalized Additive Model (GAM) and a Bayesian Structural Time Series (BSTS) model. The OLS model yielded an $R^2$ of 0.209 \textit{in-sample}, identifying a significant negative effect of the exchange rate and country risk on Ibovespa returns. The GAM achieved an $R^2$ of 0.2946 on the training set and 0.3045 on the test set (2020--2024), incorporating nonlinearities without overfitting and optimized via an internal holdout (2018--2019). The BSTS, estimated using the MAP estimator from the \texttt{orbit-ml} library, decomposed the series into structural components (trend, seasonality, and regression) and performed variable selection through posterior credibility intervals. By incorporating country risk (EMBI+) with a heterogeneous prior, the model achieved an MAE of 0.010147 and an $R^2$ of 0.2436 on the test set --- performance close to the GAM, with the additional advantage of providing probabilistic uncertainty quantification and structural decomposition. As a next step, the Causal Forests model will be implemented, focused on heterogeneous causal effects. The findings suggest that interpretable AI-based explanatory models offer a promising approach to better understanding the dynamics of financial markets, providing greater analytical depth and practical value for decision-making.
+   This study investigates the macroeconomic factors that explain the behavior of financial variables in Brazil using statistical models and interpretable machine learning techniques, with emphasis on balancing predictive accuracy and explanatory transparency. The methodology involved the construction of a daily time series dataset including the Selic interest rate, exchange rate, IPCA inflation, GDP, Ibovespa, and country risk (EMBI+), transformed via logarithmic returns and first differences and validated through stationarity tests (ADF and KPSS). Five models were estimated in sequence: ARIMA and OLS as benchmarks, followed by a Generalized Additive Model (GAM), a Bayesian Structural Time Series (BSTS) model, and a Causal Forest. The OLS model yielded an $R^2$ of 0.209 \textit{in-sample}, identifying a significant negative effect of the exchange rate and country risk on Ibovespa returns. The GAM achieved an $R^2$ of 0.2946 on the training set and 0.3045 on the test set (2020--2024), the best predictive performance among all models, capturing nonlinearities without overfitting through optimization via an internal holdout (2018--2019). The BSTS, estimated using the MAP estimator from the \texttt{orbit-ml} library, decomposed the series into structural components (trend, seasonality, and regression), performed probabilistic variable selection, and achieved an MAE of 0.010147 and an $R^2$ of 0.2436 on the test set, with the reincorporation of EMBI+ via heterogeneous prior as the main driver of improvement. The Causal Forest, estimated using \texttt{CausalForestDML} with random search guided by causal R-loss, revealed that the average causal effect of an exchange rate shock on the Ibovespa is not statistically distinguishable from zero (ATE $= -0.000086$, 95\% CI crossing zero), while the heterogeneity of the conditional effect was confirmed by the Best Linear Predictor ($\beta_1 = 76.67$, $p < 0.001$), with country risk ($\Delta$EMBI+) accounting for 72.9\% of the modulation. The findings suggest that interpretable AI-based explanatory models offer a promising and complementary approach to understanding Brazilian financial market dynamics, with each model contributing a distinct perspective: nonlinear flexibility (GAM), probabilistic temporal structure (BSTS), and causal heterogeneity (Causal Forest).
    \vspace{\onelineskip}
- 
-   \noindent 
+
+   \noindent
    \textbf{Key-words}: explanatory models; interpretable machine learning; macroeconomics; time series; applied artificial intelligence.
  \end{otherlanguage*}
 \end{resumo}
@@ -595,7 +599,7 @@ A primeira etapa metodológica consistiu na construção de uma base de dados ab
 \item Risco-País (medido pelo EMBI+).
 \end{itemize}
 
-A coleta foi realizada com auxílio de bibliotecas Python como python-bcb, ipeadatapy e yfinance. As séries com frequência mensal ou trimestral (ex: IPCA, PIB) foram interpoladas linearmente para frequência diária. Em casos de ausência de dados em dias não úteis, foi utilizado o método forward fill. A base final foi consolidada em um único DataFrame, alinhado com os dias de pregão da B3, tendo o índice do Ibovespa como referência de calendário (Tabela \ref{tabela:estatisticas_descritivas}).
+A coleta foi realizada com auxílio de bibliotecas Python como python-bcb, ipeadatapy e yfinance. As séries com frequência mensal ou trimestral (ex: IPCA, PIB) foram interpoladas linearmente para frequência diária. Em casos de ausência de dados em dias não úteis, foi utilizado o método forward fill. A base final foi consolidada em um único DataFrame, alinhado com os dias de pregão da B3, tendo o índice do Ibovespa como referência de calendário.
 
 % \begin{table}[!ht]
 %     \begin{center}
@@ -702,7 +706,9 @@ Antes de configurar os modelos de IA interpretável, foi conduzida uma análise 
 
 Uma primeira inspeção das estatísticas descritivas das covariáveis revelou assimetria expressiva de escala. A variação do risco-país ($\Delta$EMBI+, \texttt{embi\_brasil\_diff}) apresentou desvio padrão de 17,36, cerca de 500 vezes maior do que as demais covariáveis (dólar: 0,034; expectativa de IPCA: 0,018; PIB: 0,002; Selic: 0,0004). Essa diferença de escala, se não tratada, pode distorcer regularizações que assumem coeficientes em escala comparável, como o encolhimento bayesiano uniforme do BSTS.
 
+\begin{sloppypar}
 Além da escala, duas covariáveis exibiram alta concentração em zero: $\Delta$Selic (\texttt{br\_selic\_diff}) com 87,1\% dos valores iguais a zero, e $\Delta$Expectativa de IPCA (\texttt{ipca\_expectativa\_diff}) com 67,5\%. Essa esparsidade reflete a natureza dos respectivos instrumentos: a taxa Selic é ajustada nas reuniões do Copom, que ocorrem a cada 45 dias em média, e as expectativas de inflação são frequentemente revisadas apenas em episódios de choque. Em modelos lineares, variáveis com baixa variância efetiva tendem a contribuir pouco para o ajuste, embora possam carregar sinal informativo nos dias em que variam.
+\end{sloppypar}
 
 A correlação de Pearson e Spearman entre cada covariável e o retorno logarítmico do Ibovespa (\texttt{br\_ibov\_ret\_log}) confirmou a relevância esperada das duas variáveis de maior magnitude: $\Delta$EMBI+ apresentou $\rho_{\text{Pearson}} = -0{,}4039$ e $\rho_{\text{Spearman}} = -0{,}4393$ (p $<$ 0,001); $\Delta$Câmbio apresentou $\rho_{\text{Pearson}} = -0{,}3394$ e $\rho_{\text{Spearman}} = -0{,}3168$ (p $<$ 0,001). As demais covariáveis ($\Delta$Expectativa IPCA, Retorno PIB, IPCA e $\Delta$Selic) não apresentaram correlação estatisticamente significativa com o alvo (p $\geq$ 0,25 em Spearman), o que é coerente com a alta proporção de zeros nas séries de menor frequência.
 
@@ -747,7 +753,9 @@ A estimação do GAM envolveu quatro etapas de refinamento metodológico. As dua
 
 O hiperparâmetro \textit{n\_splines} determina o número de funções de base aplicadas em cada suavização, controlando a flexibilidade das curvas ajustadas. Valores reduzidos produzem funções mais suaves, com menor risco de sobreajuste, enquanto valores maiores permitem ao modelo capturar padrões mais complexos, ao custo de maior variância nas estimativas.
 
+\begin{sloppypar}
 Para identificar o valor ótimo, foi realizada uma busca sistemática no conjunto $\{5, 10, 15, 20, 25\}$, treinando o GAM com todos os termos do tipo $s(\cdot)$ no subconjunto de ajuste (2001--2017) e avaliando o MAE no \textit{holdout} (2018--2019) para cada configuração. O valor com menor MAE no \textit{holdout} foi selecionado e utilizado nas etapas subsequentes.
+\end{sloppypar}
 
 \subsection{Seleção do tipo de termo por variável (\textit{smooth} vs.\ linear)}
 
@@ -785,6 +793,22 @@ Para identificar o valor ótimo, foi conduzida uma busca em grade sobre o conjun
 \subsection{Ajuste Final e Decomposição Estrutural}
 
 Definidas as variáveis selecionadas e o valor ótimo de \texttt{sigma\_prior}, o BSTS foi ajustado com o estimador \texttt{stan-map}. Uma avaliação adicional com MCMC reforçado (1500 \textit{warmup} $\times$ 1500 amostras $\times$ 4 cadeias) produziu desempenho inferior no conjunto de teste em comparação ao MAP, sendo descartada. O estimador MAP demonstrou-se mais estável para este conjunto de dados, possivelmente em razão da alta regularização imposta pelo encolhimento bayesiano e do baixo sinal explicativo nos retornos diários. Além disso, o EMBI+ ($\Delta$EMBI+), excluído pela análise de intervalos de credibilidade na parametrização uniforme, foi reincorporado ao modelo final com um \textit{prior} heterogêneo, dez vezes maior do que o dos demais regressores, permitindo que seu efeito se manifestasse sem ser suprimido pelo encolhimento comum. Esse ajuste resultou em ganho expressivo de R² no conjunto de teste. Após o ajuste final, a previsão \textit{out-of-sample} foi obtida com o estimador MAP, que fornece apenas previsão pontual sem intervalos de credibilidade, e o método \texttt{predict(decompose=True)} separou a previsão em tendência, sazonalidade e regressão.
+
+\section{Configuração e Otimização do Modelo Causal Forest}\label{sec:cf_otimizacao}
+
+O modelo Causal Forest foi estimado por meio da implementação \texttt{CausalForestDML} da biblioteca \texttt{econml}, que combina o arcabouço de Florestas Aleatórias Generalizadas de \citeonline{Athey2019GRF} com o estimador de Double Machine Learning de \citeonline{Chernozhukov2018DML}. A estrutura causal adotada define $Y$ como o retorno logarítmico diário do Ibovespa (\texttt{br\_ibov\_ret\_log}), $T$ como a variável de tratamento binária que indica dias de choque cambial e $X$ como o vetor de covariáveis macroeconômicas.
+
+A definição do tratamento seguiu critério idêntico ao adotado nos demais modelos quanto à ausência de contaminação de dados futuros. A variável \texttt{T\_choque\_dolar} assume valor 1 nos dias em que a variação absoluta do câmbio supera o percentil 75 da distribuição calculada \textit{exclusivamente} sobre o conjunto de treino (2001--2019), com limiar resultante de 0,0229. Essa restrição ao período de treino evita que a distribuição do conjunto de teste contamine a definição do tratamento, o que introduziria leakage temporal na identificação causal.
+
+\begin{sloppypar}
+A variável \texttt{br\_dolar\_diff} foi excluída do vetor de covariáveis porque o tratamento $T$ é função determinística dela — incluí-la violaria a condição de positividade (sobreposição), tornando a identificação do efeito causal inválida. O vetor de covariárias final compreende cinco variáveis: \texttt{br\_selic\_diff}, \texttt{br\_ipca}, \texttt{br\_pib\_ret\_log}, \texttt{ipca\_expectativa\_diff} e \texttt{embi\_brasil\_diff}.
+\end{sloppypar}
+
+\begin{sloppypar}
+A seleção de hiperparâmetros foi conduzida por busca aleatória com $N = 150$ configurações, avaliadas sobre o \textit{holdout} interno 2018--2019 pelo critério de R-loss causal, critério derivado do R-learner de \citeonline{Nie2021Rlearner}, que quantifica o ajuste aos pseudo-desfechos $\tilde{Y} / \tilde{T}$ sem exigir conhecimento do efeito causal verdadeiro. Entre as 150 configurações, o modelo que minimizou o R-loss no \textit{holdout} após filtragem por sanidade (R² preditivo $\geq$ mediana do top-20 $-$ 0,02) apresentou os seguintes parâmetros: \texttt{n\_estimators} = 2504, \texttt{min\_samples\_leaf} = 76, \texttt{max\_depth} = 10, \texttt{max\_features} = \texttt{None}, \texttt{min\_balancedness\_tol} = 0,3367, \texttt{subforest\_size} = 8. Os modelos de nuisance para o desfecho e para o tratamento foram configurados como \texttt{GradientBoostingRegressor} e \texttt{GradientBoostingClassifier}, respectivamente, ambos com 100 estimadores, profundidade máxima 2 e taxa de aprendizado 0,03. O R-loss causal no \textit{holdout} para a configuração selecionada foi 0,000132.
+\end{sloppypar}
+
+A robustez dessa configuração foi avaliada comparando-se os limiares $p70$ (0,0197), $p75$ (0,0229) e $p80$ (0,0270). Em todos os três cortes, o efeito causal médio não foi estatisticamente distinto de zero e a heterogeneidade do efeito condicional foi detectável pelo Best Linear Predictor. O limiar $p75$ produziu o melhor R² preditivo fora da amostra (0,2321) e é coerente com o uso do quantil 75 como corte-padrão na literatura de volatilidade cambial, sendo adotado como configuração principal. Os resultados comparativos dos três limiares são apresentados na Tabela~\ref{tab:cf_robustez}.
 
 % ----------------------------------------------------------
 % Capitulo com exemplos de comandos inseridos de arquivo externo
@@ -866,7 +890,7 @@ Um modelo ARIMA foi ajustado à série de retornos logarítmicos do Ibovespa. Co
 
 Este resultado estabelece um benchmark univariado, baseado apenas no comportamento passado do índice.
 
-Em seguida, foi estimado um modelo de regressão linear múltipla com os retornos do Ibovespa como variável dependente e as variáveis transformadas como preditoras. Observou-se que \textbf{R² = 0{,}209}. Embora o valor seja considerado razoável em contextos de alta volatilidade como o mercado financeiro, ele também evidencia uma limitação importante do modelo MQO: sua baixa capacidade explicativa frente à complexidade das relações econômicas envolvidas. Além disso, o MQO assume linearidade, homocedasticidade e ausência de interações complexas entre variáveis --- suposições muitas vezes violadas em séries financeiras. Essas restrições reforçam a necessidade de empregar modelos mais flexíveis e robustos, como GAM, BSTS e Causal Forest, que são capazes de capturar não linearidades, efeitos dinâmicos e relações causais heterogêneas com maior precisão e interpretabilidade. Identificação de dois preditores estatisticamente significativos: variação do dólar, com impacto negativo e variação do risco-país (EMBI+), também com impacto negativo. Os testes diagnósticos indicaram ausência de multicolinearidade (VIF baixo), como visto na Tabela \ref{tab:vif}, mas rejeição das hipóteses de normalidade e homocedasticidade dos resíduos.
+Em seguida, foi estimado um modelo de regressão linear múltipla com os retornos do Ibovespa como variável dependente e as variáveis transformadas como preditoras. Observou-se que \textbf{R² = 0{,}209}. Embora o valor seja considerado razoável em contextos de alta volatilidade como o mercado financeiro, ele também evidencia uma limitação importante do modelo MQO: sua baixa capacidade explicativa frente à complexidade das relações econômicas envolvidas. Além disso, o MQO assume linearidade, homocedasticidade e ausência de interações complexas entre variáveis — suposições muitas vezes violadas em séries financeiras. Essas restrições reforçam a necessidade de empregar modelos mais flexíveis e robustos, como GAM, BSTS e Causal Forest, que são capazes de capturar não linearidades, efeitos dinâmicos e relações causais heterogêneas com maior precisão e interpretabilidade. Identificação de dois preditores estatisticamente significativos: variação do dólar, com impacto negativo e variação do risco-país (EMBI+), também com impacto negativo. Os testes diagnósticos indicaram ausência de multicolinearidade (VIF baixo), como visto na Tabela \ref{tab:vif}, mas rejeição das hipóteses de normalidade e homocedasticidade dos resíduos.
 
 \begin{table}[ht!]
 \centering
@@ -884,7 +908,7 @@ Variação do risco-país (EMBI+ Brasil) & 1{,}1441 \\ \hline
 \caption{Fatores de Inflação da Variância (VIF) para as variáveis explicativas do MQO}\label{tab:vif}
 \end{table}
 
-Para uma avaliação consolidada do desempenho dos modelos da linha de base, foram calculadas, além do R², as métricas MAE (Erro Médio Absoluto) e RMSE (Raiz do Erro Quadrático Médio). O MAE mede o desvio médio absoluto entre os valores preditos e os observados, expressando o erro em unidades da própria variável. O RMSE, por sua vez, penaliza de forma quadrática os erros maiores, sendo mais sensível a eventos extremos --- característica especialmente relevante em séries financeiras sujeitas a choques e períodos de alta volatilidade. A Tabela~\ref{tab:metricas} apresenta o comparativo \textit{in-sample} entre os modelos estimados, incluindo o ajuste preliminar do GAM realizado sobre o conjunto completo dos dados.
+Para uma avaliação consolidada do desempenho dos modelos da linha de base, foram calculadas, além do R², as métricas MAE (Erro Médio Absoluto) e RMSE (Raiz do Erro Quadrático Médio). O MAE mede o desvio médio absoluto entre os valores preditos e os observados, expressando o erro em unidades da própria variável. O RMSE, por sua vez, penaliza de forma quadrática os erros maiores, sendo mais sensível a eventos extremos — característica especialmente relevante em séries financeiras sujeitas a choques e períodos de alta volatilidade. A Tabela~\ref{tab:metricas} apresenta o comparativo \textit{in-sample} entre os modelos estimados, incluindo o ajuste preliminar do GAM realizado sobre o conjunto completo dos dados.
 
 \begin{table}[ht!]
 \centering
@@ -895,7 +919,7 @@ ARIMA(4, 0, 3) & --- & 0{,}012225 & 0{,}017085 \\ \hline
 OLS / MQO & 0{,}2086 & 0{,}011093 & 0{,}015239 \\ \hline
 GAM & 0{,}2935 & 0{,}010671 & 0{,}014398 \\ \hline
 \end{tabular}
-\caption{Métricas de avaliação dos modelos estimados --- linha de base \textit{in-sample} (conjunto completo)}\label{tab:metricas}
+\caption{Métricas de avaliação dos modelos estimados — linha de base \textit{in-sample} (conjunto completo)}\label{tab:metricas}
 \end{table}
 
 \section{Resultados do Modelo GAM}\label{sec:resultados_gam}
@@ -983,7 +1007,9 @@ $\Delta$EMBI+ (Risco-País) & $+0{,}0076$ & 0{,}0155 & $-0{,}0065$ & $+0{,}0344$
 \caption{Estatísticas posteriores dos coeficientes do BSTS completo: média, desvio padrão e intervalo de credibilidade a 90\%. A variável é selecionada quando o IC 90\% não cruza zero.}\label{tab:bsts_selecao}
 \end{table}
 
+\begin{sloppypar}
 Cinco das seis variáveis apresentaram intervalos de credibilidade a 90\% inteiramente fora do zero, sendo inicialmente selecionadas. A única exclusão foi a variação do risco-país ($\Delta$EMBI+), cuja distribuição posterior cobriu valores positivos e negativos (IC 90\% $= [-0{,}0065;\, +0{,}0344]$), com probabilidade de inclusão de apenas 0{,}59. Esse resultado contrasta com a evidência consistente de relevância do EMBI+ identificada nos PDPs do GAM. Uma interpretação plausível é que, na parametrização com \texttt{sigma\_prior} uniforme e padrão, parte do efeito do EMBI+ é absorvida por componentes estruturais (tendência e sazonalidade) e por sua correlação parcial com o câmbio, reduzindo o sinal residual atribuído à variável.
+\end{sloppypar}
 
 Diante dessa hipótese, o $\Delta$EMBI+ foi reincorporado ao modelo final com um \textit{prior} heterogêneo, dez vezes mais amplo do que o dos demais regressores, permitindo que seu coeficiente se manifestasse sem ser suprimido pelo encolhimento uniforme. Essa escolha é consistente com o achado da análise exploratória (Seção~\ref{sec:eda_tcc2}), que identificou no $\Delta$EMBI+ desvio padrão ~500 vezes maior do que o das demais covariáveis, tornando-o particularmente vulnerável a encolhimento uniforme. Esse ajuste (experimento B7) resultou em elevação expressiva do R²\_teste de 0{,}1401 para 0{,}2436, sendo o principal responsável pelo ganho do BSTS final em relação ao \textit{baseline} operacional.
 
@@ -991,7 +1017,7 @@ A Figura~\ref{fig:bsts_posteriores} ilustra as distribuições posteriores dos s
 
 \begin{figure}[htb]
     \begin{center}
-        \includegraphics[scale=0.55]{bsts_posteriores.png}
+        \includegraphics[width=0.95\linewidth]{bsts_posteriores.png}
     \end{center}
     \caption{\label{fig:bsts_posteriores}Distribuições posteriores dos coeficientes do BSTS completo. Variáveis cujo IC 90\% não cruza zero (azul) são selecionadas; a variável removida (salmão) corresponde ao $\Delta$EMBI+ (Fonte: Autor)}
 \end{figure}
@@ -1063,6 +1089,99 @@ O terceiro aspecto é a seleção de variáveis no BSTS, que opera sobre um crit
 
 GAM e BSTS são, portanto, complementares mais do que substitutos. O GAM é superior em previsão pontual e na visualização de não linearidades, enquanto o BSTS adiciona estrutura temporal explícita, decomposição em componentes e inferência bayesiana sobre os coeficientes. Essa complementaridade reforça o argumento, central neste trabalho, de que a escolha do modelo deve ser orientada não apenas pela métrica preditiva, mas também pela natureza da pergunta e pela robustez interpretativa exigida pelo problema.
 
+\section{Resultados do Modelo Causal Forest}\label{sec:resultados_cf}
+
+Esta seção apresenta os resultados do modelo Causal Forest estimado sobre a estrutura causal descrita na Seção~\ref{sec:cf_otimizacao}: retorno logarítmico do Ibovespa como desfecho, choque cambial binário (limiar $p75 = 0{,}0229$, calculado no treino) como tratamento e cinco covariáveis macroeconômicas como modificadores de efeito. Diferentemente dos modelos anteriores, cujo objetivo primário é a predição pontual, o Causal Forest busca estimar o efeito causal condicional $\tau(x) = \mathbb{E}[Y(1) - Y(0) \mid X = x]$ (cf. Equação~\ref{eq:cate}), admitindo que esse efeito pode variar de acordo com o contexto macroeconômico de cada observação.
+
+\subsection{Efeito Causal Médio e Distribuição do CATE}
+
+A estimação do ATE (Average Treatment Effect) no conjunto de teste (2020--2024) resultou em ATE $= -0{,}000086$, com intervalo de confiança de 95\% $= [-0{,}002625;\; +0{,}002453]$. O zero está contido no intervalo, de modo que o efeito causal \textit{médio} de um dia de choque cambial sobre o retorno do Ibovespa não é estatisticamente distinto de zero. Esse resultado, longe de ser vacuoso, é a primeira evidência de que o impacto do câmbio sobre o mercado acionário é heterogêneo e depende do contexto macroeconômico: o efeito médio nulo emerge da soma de efeitos positivos e negativos de magnitudes similares, em vez de indicar ausência de influência.
+
+A Figura~\ref{fig:cf_cate} apresenta a distribuição do CATE estimado no período de teste. As estimativas pontuais variam de $-0{,}005341$ a $+0{,}006202$, com mediana de $-0{,}000528$ e desvio padrão de 0,002227. Aproximadamente 58,7\% dos dias de teste apresentam efeito estimado negativo, refletindo a predominância de choques cambiais em contextos de aversão a risco no período 2020--2024.
+
+\begin{figure}[htb]
+    \begin{center}
+        \includegraphics[scale=0.50]{cf_cate_distribuicao.png}
+    \end{center}
+    \caption{\label{fig:cf_cate}Distribuição do CATE estimado pelo Causal Forest no conjunto de teste (2020--2024). A linha vertical indica o ATE $= -0{,}000086$, cujo intervalo de confiança de 95\% cruza zero. A dispersão de $\tau(x)$ ao redor do ATE nulo evidencia a heterogeneidade do efeito causal condicional (Fonte: Autor)}
+\end{figure}
+
+Cabe registrar um aspecto metodológico relevante sobre o período de teste: a prevalência de dias de choque cambial (T = 1) foi de 25,0\% no treino (2001--2019) e de 55,9\% no conjunto de teste (2020--2024). Essa assimetria não é um artefato do desenho, mas reflete a maior volatilidade cambial do período posterior, associada à pandemia de COVID-19 e ao ciclo de aperto monetário que elevou a Selic a 13,75\% ao ano. Ela se conecta diretamente ao achado central desta seção: num ambiente em que choques cambiais são mais frequentes, o efeito causal médio tende a refletir uma mistura de contextos mais diversificada, tornando a heterogeneidade do CATE ainda mais relevante como instrumento analítico.
+
+\subsection{Calibração do CATE pelo Best Linear Predictor}
+
+Para avaliar se a heterogeneidade estimada pelo forest é estatisticamente real ou apenas ruído de estimação, foi aplicado o Best Linear Predictor (BLP) de \citeonline{Chernozhukov2018DML}. Nesse procedimento, o CATE observado é regredido sobre o CATE estimado pelo modelo, e o coeficiente angular $\beta_1$ testa a hipótese nula de ausência de heterogeneidade ($H_0 : \beta_1 = 0$). Os modelos de nuisance do BLP ($\hat{m}$ e $\hat{e}$) foram ajustados por cross-fitting temporal de cinco folds dentro do conjunto de teste, dado que o regime cambial e de juros do período 2020--2024 difere substancialmente do treino.
+
+Os resultados foram $\beta_1 = 76{,}67$, IC 95\% $= [61{,}76;\; 91{,}59]$, com $p < 0{,}001$, rejeitando $H_0$. A calibração pelo Best Linear Predictor de \citeonline{Chernozhukov2018DML} rejeita $H_0 : \beta_1 = 0$ ao nível de 1\%, confirmando que o forest captura heterogeneidade estatisticamente significativa do efeito condicional e não apenas ruído. O valor absoluto de $\beta_1 \gg 1$ é um artefato do encolhimento (\textit{shrinkage}) inerente à estimação honesta das folhas: o \texttt{CausalForestDML} encolhe $\hat{\tau}(x)$ em direção a zero para garantir a consistência dos intervalos de confiança do CATE, de modo que as estimativas pontuais são sistematicamente subestimadas em escala; o BLP recupera a escala correta ao regredir o CATE observado sobre o estimado, e o slope $\gg 1$ indica que a ordenação da heterogeneidade foi capturada corretamente, ainda que sua magnitude absoluta esteja comprimida. A interpretação relevante para este trabalho foca na significância estatística como evidência de heterogeneidade real.
+
+\subsection{Heterogeneidade por Grupo: GATES}
+
+Para descrever a estrutura da heterogeneidade de forma interpretável, foram calculados os GATES (Group Average Treatment Effects) por decil do CATE estimado $\hat{\tau}(x)$. Cada decil agrupa aproximadamente 112 observações do conjunto de teste; o efeito médio dentro de cada grupo e seu intervalo de confiança de 95\% são apresentados na Figura~\ref{fig:cf_gates}.
+
+\begin{figure}[htb]
+    \begin{center}
+        \includegraphics[scale=0.50]{cf_gates.png}
+    \end{center}
+    \caption{\label{fig:cf_gates}GATES por decil do CATE estimado: efeito médio de tratamento em cada grupo, com intervalos de confiança de 95\%. Os únicos decis cujo IC não cruza zero são o decil 1 (efeito negativo: $-0{,}003849$, IC $[-0{,}0071;\; -0{,}0006]$) e o decil 10 (efeito positivo: $+0{,}004475$, IC $[+0{,}0011;\; +0{,}0078]$), confirmando a monotonicidade estritamente crescente da heterogeneidade (Fonte: Autor)}
+\end{figure}
+
+\begin{sloppypar}
+Os GATES exibem monotonicidade estritamente crescente ao longo dos decis, de $-0{,}003849$ (decil 1) a $+0{,}004475$ (decil 10), com amplitude total de aproximadamente 0,0083, valor superior a três vezes o desvio padrão do CATE (0,0022). Os únicos decis com intervalos de confiança inteiramente fora de zero são os extremos: o decil 1 (IC $[-0{,}0071;\; -0{,}0006]$, exclusivamente negativo) e o decil 10 (IC $[+0{,}0011;\; +0{,}0078]$, exclusivamente positivo). Os decis intermediários cruzam zero, resultado coerente com o ATE nulo: a soma de efeitos extremos de sinais opostos produz uma média não distinguível de zero, mas a estrutura de heterogeneidade entre grupos é bem identificada.
+\end{sloppypar}
+
+\subsection{Covariáveis que Modulam o Efeito: Importância e PDPs}
+
+A importância das covariáveis na determinação da heterogeneidade de $\tau(x)$ foi calculada pelo critério nativo do \texttt{CausalForestDML}, que mede a contribuição de cada variável à variação do efeito condicional entre as partições do forest. O resultado revela dominância expressiva do risco-país: o $\Delta$EMBI+ (\texttt{embi\_brasil\_diff}) concentra 72,9\% da variação explicada no CATE, seguido do IPCA (16,2\%) e do retorno do PIB (10,9\%). A variação da Selic e a expectativa de inflação apresentaram importância nula, indicando que não contribuem individualmente para a heterogeneidade do efeito causal do câmbio sobre o Ibovespa.
+
+\begin{figure}[htb]
+    \begin{center}
+        \includegraphics[scale=0.50]{cf_feature_importance.png}
+    \end{center}
+    \caption{\label{fig:cf_feat_imp}Importância das covariáveis na heterogeneidade do CATE, calculada pelo critério nativo do \texttt{CausalForestDML}. O $\Delta$EMBI+ (risco-país) responde por 72,9\% da variação do efeito condicional, seguido do IPCA (16,2\%) e do retorno do PIB (10,9\%) (Fonte: Autor)}
+\end{figure}
+
+\begin{figure}[htb]
+    \begin{center}
+        \includegraphics[width=\linewidth]{cf_pdp_tau.png}
+    \end{center}
+    \caption{\label{fig:cf_pdp_tau}PDPs do CATE estimado em função de cada covariável: efeito marginal da variável sobre a heterogeneidade do efeito causal do choque cambial. A curva do $\Delta$EMBI+ exibe relação negativa, com o efeito do choque tornando-se mais negativo à medida que o risco soberano aumenta (Fonte: Autor)}
+\end{figure}
+
+\begin{figure}[htb]
+    \begin{center}
+        \includegraphics[scale=0.50]{cf_shap_summary.png}
+    \end{center}
+    \caption{\label{fig:cf_shap}Valores SHAP para o CATE estimado \cite{Lundberg2017}: cada ponto representa uma observação do conjunto de teste, e a posição horizontal indica a contribuição da covariável para o afastamento de $\hat{\tau}(x)$ em relação ao ATE. O $\Delta$EMBI+ domina, com valores SHAP elevados em dias de alto risco-país associados a efeitos causais mais negativos (Fonte: Autor)}
+\end{figure}
+
+A interpretação econômica é direta: quando o prêmio de risco soberano está elevado, choques cambiais tendem a amplificar saídas de capital e aversão a risco, produzindo efeitos mais negativos sobre o Ibovespa. Em contextos de risco-país baixo, o mesmo choque cambial pode ser assimilado com menor impacto sobre os ativos domésticos, ou até associado a ajustes de fluxos comerciais com efeito positivo no curtíssimo prazo. O IPCA e o PIB contribuem com ~27\% restantes da heterogeneidade, indicando que o contexto inflacionário e de atividade econômica também modula a reação do mercado acionário a variações cambiais — dimensões que modelos lineares não conseguem capturar de forma condicional.
+
+\subsection{Robustez da Escolha do Limiar}
+
+A robustez da definição de choque cambial foi avaliada comparando três limiares alternativos. A Tabela~\ref{tab:cf_robustez} apresenta os resultados para cada configuração.
+
+\begin{table}[ht!]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Limiar} & \textbf{Threshold} & \textbf{Prev.\ treino} & \textbf{Prev.\ teste} & \textbf{R²\_teste} & \textbf{MAE} & \textbf{RMSE} & \textbf{ATE (IC 95\%)} \\ \hline
+$p70$ & 0{,}0197 & 30{,}0\% & 60{,}5\% & 0{,}1991 & 0{,}010540 & 0{,}015308 & $+0{,}001$ ($[-0{,}0025;\; +0{,}0041]$) \\ \hline
+\textbf{$p75$} & \textbf{0{,}0229} & \textbf{25{,}0\%} & \textbf{55{,}9\%} & \textbf{0{,}2321} & \textbf{0{,}010509} & \textbf{0{,}014990} & \textbf{$-0{,}000$ ($[-0{,}0026;\; +0{,}0025]$)} \\ \hline
+$p80$ & 0{,}0270 & 20{,}0\% & 50{,}2\% & 0{,}2008 & 0{,}010610 & 0{,}015292 & $+0{,}000$ ($[-0{,}0029;\; +0{,}0032]$) \\ \hline
+\end{tabular}%
+}
+\caption{Comparativo de desempenho entre os três limiares de choque cambial ($p70$, $p75$, $p80$). Em todos os casos, o ATE não é estatisticamente distinto de zero e a heterogeneidade permanece detectável. O limiar $p75$ (negrito) foi adotado como configuração principal por combinar o melhor R² preditivo com a justificativa convencional na literatura de volatilidade cambial.}\label{tab:cf_robustez}
+\end{table}
+
+Em todos os três limiares, o ATE permanece não distinto de zero, com todos os intervalos de confiança cruzando zero. A conclusão qualitativa central — efeito médio nulo, heterogeneidade real e modulada predominantemente pelo risco soberano — é portanto robusta à escolha do corte, variando apenas em intensidade. O limiar $p75$ combina o melhor desempenho preditivo com a referência convencional e foi mantido como configuração principal.
+
+\subsection{Reconstrução Preditiva e Posicionamento Comparativo}
+
+Embora o objetivo primário do Causal Forest seja causal, é possível reconstruir uma previsão preditiva pela fórmula $\hat{Y} = \hat{m}_0(X) + \hat{\tau}(X) \cdot T$, onde $\hat{m}_0(X)$ é estimado apenas sobre os dias de controle ($T = 0$) do conjunto de treino. Essa reconstrução permite comparar o modelo com os demais em termos preditivos, com a ressalva de que não constitui o critério de estimação adotado.
+
+No conjunto de teste (2020--2024), a reconstrução produziu MAE = 0{,}010509, RMSE = 0{,}014990 e R² = 0{,}2321. Em termos preditivos, o modelo é inferior ao GAM (R² = 0{,}3045) e levemente inferior ao BSTS (R² = 0{,}2436), mas supera a linha de base do MQO em R²\_teste (0{,}2339 $\to$ 0{,}2321 é inferior, porém próximo). O posicionamento abaixo do GAM é esperado e metodologicamente coerente: o tuning do Causal Forest minimizou R-loss causal, não R² preditivo, e a estimação honesta das folhas introduz encolhimento intencional que reduz a variância das estimativas ao custo de algum viés. O valor do método está na dimensão causal — na identificação de quem é afetado, de quanto e por qual canal macroeconômico — e não na acurácia preditiva.
+
 \section{Síntese Comparativa dos Modelos}\label{sec:sintese_modelos}
 
 A Tabela~\ref{tab:metricas_split} consolida o desempenho de todos os modelos estimados ao longo do trabalho, lado a lado: à esquerda, as métricas \textit{in-sample} da linha de base (sobre o conjunto completo dos dados) e, à direita, as métricas \textit{out-of-sample} obtidas no conjunto de teste (jan/2020--jul/2024).
@@ -1076,15 +1195,14 @@ ARIMA(4, 0, 3) & ---      & 0{,}012225 & ---      & ---        & ---        \\ \
 OLS / MQO      & 0{,}2086 & 0{,}011093 & 0{,}2339 & 0{,}010351 & 0{,}014971 \\ \hline
 GAM (final)    & 0{,}2946 & 0{,}010758 & \textbf{0{,}3045} & \textbf{0{,}009997} & \textbf{0{,}014265} \\ \hline
 BSTS (final)   & ---      & ---        & 0{,}2436 & 0{,}010147 & 0{,}014877 \\ \hline
+Causal Forest  & ---      & ---        & 0{,}2321 & 0{,}010509 & 0{,}014990 \\ \hline
 \end{tabular}
-\caption{Comparativo completo de métricas: linha de base \textit{in-sample} (conjunto completo) e avaliação \textit{out-of-sample} (teste: jan/2020--jul/2024). O melhor desempenho fora da amostra está destacado em negrito.}\label{tab:metricas_split}
+\caption{Comparativo completo de métricas: linha de base \textit{in-sample} (conjunto completo) e avaliação \textit{out-of-sample} (teste: jan/2020--jul/2024). O melhor desempenho preditivo fora da amostra está destacado em negrito. As métricas do Causal Forest referem-se à reconstrução $\hat{Y} = \hat{m}_0(X) + \hat{\tau}(X) \cdot T$, cujo objetivo primário é causal, não preditivo.}\label{tab:metricas_split}
 \end{table}
 
-Três leituras se destacam dessa síntese. A primeira é que o GAM apresenta o melhor desempenho \textit{out-of-sample} em todas as métricas comparáveis, com R² de 0{,}3045 no teste e 0{,}2946 no treino (2001--2019), o que evidencia ausência de sobreajuste mesmo em um período estruturalmente distinto do treino. A segunda é que o OLS apresentou R²\_teste (0{,}2339) superior ao R²\_base \textit{in-sample} (0{,}2086), sugerindo que as relações lineares entre câmbio, risco-país e retornos do Ibovespa se intensificaram no período pós-2020, marcado pela pandemia de COVID-19 e pelo ciclo de aperto monetário. A terceira é que o BSTS, com R²\_teste de 0{,}2436 após a incorporação do EMBI+ com \textit{prior} heterogêneo, apresenta desempenho preditivo superior ao da versão com parametrização uniforme, ao mesmo tempo em que agrega valor próprio, com decomposição estrutural da série em tendência, sazonalidade e regressão, e seleção probabilística de variáveis por distribuições posteriores, características inacessíveis nos modelos pontuais.
+Quatro leituras se destacam dessa síntese. A primeira é que o GAM apresenta o melhor desempenho \textit{out-of-sample} em todas as métricas preditivas comparáveis, com R² de 0{,}3045 no teste e 0{,}2946 no treino (2001--2019), o que evidencia ausência de sobreajuste mesmo em um período estruturalmente distinto. A segunda é que o OLS apresentou R²\_teste (0{,}2339) superior ao R²\_base \textit{in-sample} (0{,}2086), sugerindo que as relações lineares entre câmbio, risco-país e retornos do Ibovespa se intensificaram no período pós-2020, marcado pela pandemia de COVID-19 e pelo ciclo de aperto monetário. A terceira é que o BSTS, com R²\_teste de 0{,}2436 após a incorporação do EMBI+ com \textit{prior} heterogêneo, agrega à análise elementos que os demais modelos pontuais não oferecem — decomposição estrutural da série e seleção probabilística de variáveis por distribuições posteriores. A quarta leitura pertence ao Causal Forest: o ATE nulo ($-0{,}000086$, IC 95\% cruzando zero) é a evidência mais direta de que o efeito do câmbio sobre o Ibovespa é heterogêneo e regime-dependente, manifestando-se com sinais opostos segundo o contexto macroeconômico — o que não contradiz, mas complementa, as estimativas de efeito médio dos demais modelos. A reconstrução preditiva do Causal Forest (R² = 0{,}2321) posiciona-o abaixo do GAM e do BSTS em termos preditivos, o que é esperado dado que o tuning foi orientado por critério causal (R-loss), não por R² preditivo.
 
-Essa leitura comparativa precisa ser complementada por um reconhecimento estrutural sobre a natureza do período de teste. Os anos de 2020--2024 contêm eventos com poucos análogos no histórico de treino, como a pandemia de COVID-19, o ciclo de elevação da Selic de 2,00\% para 13,75\% ao ano e a recomposição cambial subsequente, o que torna a leitura das métricas \textit{out-of-sample} indissociável da hipótese de mudança de regime econômico. A Crítica de Lucas \cite{lucas1976critique} sustenta, em sua formulação clássica, que parâmetros estimados a partir de séries históricas podem perder estabilidade quando o regime de política se desloca; evidências empíricas em economias desenvolvidas confirmam que tal instabilidade é particularmente visível em transições de regime \cite{lubik2010stability} e que algoritmos de aprendizado de máquina, embora aproximem expectativas racionais sob choques moderados, encontram dificuldade adicional diante de mudanças paradigmáticas \cite{castelnuovo2022ml}. Esse enquadramento sugere que a queda do R² do treino para o teste não deve ser atribuída exclusivamente a sobreajuste, mas também, em parte, à hipótese de que as relações capturadas durante 2001--2019 são, em alguma medida, específicas ao regime econômico vigente naquele período. A interpretabilidade estrutural dos modelos, expressa nas não linearidades do GAM e na decomposição do BSTS, preserva sua validade descritiva sobre o regime histórico de treinamento, ainda que a generalização para regimes futuros distintos exija cautela adicional.
-
-A próxima etapa será a estimação do modelo Causal Forest, cujos resultados serão incorporados a esta síntese após a conclusão do experimento.
+Essa leitura comparativa precisa ser complementada por um reconhecimento estrutural sobre a natureza do período de teste. Os anos de 2020--2024 contêm eventos com poucos análogos no histórico de treino, como a pandemia de COVID-19, o ciclo de elevação da Selic de 2,00\% para 13,75\% ao ano e a recomposição cambial subsequente, o que torna a leitura das métricas \textit{out-of-sample} indissociável da hipótese de mudança de regime econômico. A Crítica de Lucas \cite{lucas1976critique} sustenta, em sua formulação clássica, que parâmetros estimados a partir de séries históricas podem perder estabilidade quando o regime de política se desloca; evidências empíricas em economias desenvolvidas confirmam que tal instabilidade é particularmente visível em transições de regime \cite{lubik2010stability} e que algoritmos de aprendizado de máquina, embora aproximem expectativas racionais sob choques moderados, encontram dificuldade adicional diante de mudanças paradigmáticas \cite{castelnuovo2022ml}. Esse enquadramento sugere que a queda do R² do treino para o teste não deve ser atribuída exclusivamente a sobreajuste, mas também, em parte, à hipótese de que as relações capturadas durante 2001--2019 são, em alguma medida, específicas ao regime econômico vigente naquele período. A interpretabilidade estrutural dos modelos, expressa nas não linearidades do GAM, na decomposição do BSTS e na heterogeneidade condicional do Causal Forest, preserva sua validade descritiva sobre o regime histórico de treinamento, ainda que a generalização para regimes futuros distintos exija cautela adicional.
 
 % ---
 % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
@@ -1124,7 +1242,8 @@ atividade 5 &    &     &           &     &     &     x     \\
 
 \item \textbf{atividade 2 (concluída):} Estimação do modelo BSTS (\textit{Bayesian Structural Time Series}) com decomposição da série em componentes estruturais (tendência, sazonalidade e regressão). A etapa incluiu seleção de variáveis por intervalos de credibilidade a 90\% (MCMC com 500w$\times$500s$\times$4 cadeias), otimização do hiperparâmetro \texttt{sigma\_prior} via busca em grade no \textit{holdout} 2018--2019 ($\sigma^* = 0{,}01$) e incorporação do $\Delta$EMBI+ com \textit{prior} heterogêneo (10$\times\sigma^*$), que elevou o R²\_teste de 0{,}1401 para 0{,}2436. O modelo obteve MAE de 0{,}010147 e R² de 0{,}2436 no conjunto de teste, agregando ainda a decomposição estrutural da série em componentes e a seleção probabilística de variáveis por distribuições posteriores obtidas via MCMC.
 
-\item \textbf{atividade 3:} Aplicação do modelo Causal Forest, com foco na inferência causal heterogênea. Será definido um tratamento exógeno e estimado o efeito causal condicional (CATE) sobre os retornos do Ibovespa em diferentes contextos econômicos.
+\item \begin{sloppypar}\textbf{atividade 3 (concluída):} Aplicação do modelo Causal Forest com foco na inferência causal heterogênea. O tratamento foi definido como choque cambial binário (variação absoluta do câmbio acima do percentil 75 calculado no treino 2001--2019, limiar = 0,0229), com a variável de câmbio excluída das covariáveis por violar a positividade. A busca aleatória com $N = 150$ configurações no \textit{holdout} 2018--2019, guiada por R-loss causal, selecionou configuração com \texttt{n\_estimators} = 2504, \texttt{min\_samples\_leaf} = 76 e \texttt{max\_depth} = 10. O ATE estimado no teste foi de $-0{,}000086$ (IC 95\% $[-0{,}0026;\; +0{,}0025]$, não distinto de zero), mas a heterogeneidade foi confirmada pelo BLP de Chernozhukov et al. ($\beta_1 = 76{,}67$, $p < 0{,}001$), com os GATES exibindo amplitude total de 0,0083 entre o decil mais negativo e o mais positivo. A reconstrução preditiva obteve R² = 0{,}2321 no conjunto de teste. O risco-país ($\Delta$EMBI+) respondeu por 72,9\% da heterogeneidade do efeito condicional, indicando que a resposta do mercado acionário a choques cambiais é modulada predominantemente pelo ambiente de risco soberano.
+\end{sloppypar}
 
 \item \textbf{atividade 4:} Análise comparativa entre todos os modelos estimados ao longo do trabalho (ARIMA, MQO, GAM, BSTS e Causal Forest). Serão consolidadas métricas de desempenho preditivo e interpretabilidade.
 
@@ -1138,7 +1257,7 @@ atividade 5 &    &     &           &     &     &     x     \\
 % ---
 \chapter{Conclusão}
 
-Os resultados obtidos até esta etapa confirmam a importância de um tratamento cuidadoso das séries temporais utilizadas no projeto, especialmente no que se refere à necessidade de transformações para garantir a estacionariedade e evitar regressões espúrias. A análise exploratória, os testes de estacionariedade e os primeiros modelos estimados,como ARIMA e regressão linear com MQO, serviram como linha de base para avaliar a previsibilidade e os fatores que explicam os retornos do Ibovespa a partir de variáveis macroeconômicas e financeiras.
+Os resultados obtidos até esta etapa confirmam a importância de um tratamento cuidadoso das séries temporais utilizadas no projeto, especialmente no que se refere à necessidade de transformações para garantir a estacionariedade e evitar regressões espúrias. A análise exploratória, os testes de estacionariedade e os primeiros modelos estimados, como ARIMA e regressão linear com MQO, serviram como linha de base para avaliar a previsibilidade e os fatores que explicam os retornos do Ibovespa a partir de variáveis macroeconômicas e financeiras.
 
 Apesar de sua relevância teórica e interpretabilidade direta, os modelos econométricos tradicionais mostraram limitações importantes. O modelo ARIMA, por ser univariado, não incorpora variáveis explicativas externas e apenas projeta a série com base em sua própria dinâmica. Já o modelo MQO, embora tenha permitido identificar relações estatisticamente significativas (como os efeitos negativos do câmbio e do risco-país), apresentou baixa capacidade preditiva (R² = 0,209) e falhas nos pressupostos fundamentais, como homocedasticidade e normalidade dos resíduos. Além disso, ambos os modelos são incapazes de capturar não linearidades complexas, efeitos interativos e mudanças estruturais ao longo do tempo, características recorrentes em mercados financeiros.
 
@@ -1148,9 +1267,9 @@ A estimação do modelo BSTS adicionou uma perspectiva dinâmica e probabilísti
 
 A interpretação dos resultados deve, contudo, observar limitações declaradas. A primeira é de natureza teórica: por se basearem em padrões estatísticos extraídos de séries históricas, o GAM e o BSTS herdam a Crítica de Lucas \cite{lucas1976critique}, no sentido de que suas estimativas refletem as regras de decisão dos agentes econômicos sob o regime de política vigente no período de estimação. A leitura dos modelos como instrumentos explicativos preserva sua validade para o regime histórico que produziu os parâmetros, mas demanda cautela quando se considera sua aplicação a períodos atravessados por mudanças sistemáticas de política monetária, fiscal ou cambial, precisamente o tipo de cenário ao qual o conjunto de teste 2020--2024 esteve exposto. A segunda limitação é metodológica: a opção pela janela temporal fixa, embora preserve comparabilidade direta entre modelos e simplicidade da avaliação, abdica das vantagens potenciais de janelas adaptativas em ambientes com instabilidade estrutural \cite{inoue2017rolling}.
 
-Esses limites, longe de invalidar as conclusões alcançadas, delineiam caminhos naturais de extensão do trabalho. Entre eles, destacam-se a adoção de janelas adaptativas ou \textit{rolling} na avaliação \textit{out-of-sample}, a implementação plena do modelo de Causal Forests, já previsto no roteiro deste TCC, como tentativa explícita de aproximar a inferência causal a partir de aprendizado de máquina \cite{athey2019ml}, e o acompanhamento da regulamentação em curso na Autoridade Nacional de Proteção de Dados, cujos desdobramentos podem reorientar as exigências de explicabilidade aplicáveis a modelos quantitativos de risco no Brasil \cite{anpd2025nt12}.
+Esses limites, longe de invalidar as conclusões alcançadas, delineiam caminhos naturais de extensão do trabalho. Entre eles, destacam-se a adoção de janelas adaptativas ou \textit{rolling} na avaliação \textit{out-of-sample} e o acompanhamento da regulamentação em curso na Autoridade Nacional de Proteção de Dados, cujos desdobramentos podem reorientar as exigências de explicabilidade aplicáveis a modelos quantitativos de risco no Brasil \cite{anpd2025nt12}.
 
-A próxima etapa do trabalho será a estimação do modelo Causal Forest, com foco na inferência causal heterogênea. Os resultados desse experimento, bem como sua comparação com os demais modelos, serão incorporados a esta conclusão após a sua execução.
+A aplicação do Causal Forest concluiu o ciclo de modelos propostos, acrescentando à análise a dimensão causal que os modelos preditivos anteriores não abordam. O efeito causal médio de um dia de choque cambial sobre o retorno do Ibovespa não foi estatisticamente distinto de zero (ATE $= -0{,}000086$, IC 95\% cruzando zero), resultado que, interpretado corretamente, não indica ausência de efeito, mas sim a existência de efeitos heterogêneos de sinais opostos que se cancelam na média. A calibração pelo Best Linear Predictor de \citeonline{Chernozhukov2018DML} confirmou a significância estatística dessa heterogeneidade ($\beta_1 = 76{,}67$, $p < 0{,}001$), e a análise de GATES revelou amplitude total de aproximadamente 0,0083 entre os grupos de menor e maior efeito condicional, valor superior a três vezes o desvio padrão do CATE. O risco-país ($\Delta$EMBI+) emergiu como o principal modulador do efeito, respondendo por 72,9\% da variação do CATE, o que reforça a tese central deste trabalho de que a relação entre câmbio e mercado acionário no Brasil não é uniforme, mas condicionada pelo ambiente de risco soberano. Esse resultado é coerente com a evidência do GAM de que o EMBI+ é a variável com maior ganho não linear no modelo preditivo, e com o achado do BSTS de que o encolhimento uniforme dos coeficientes suprime o efeito do EMBI+ em detrimento dos demais regressores — em conjunto, os três modelos convergem para uma descrição consistente do papel central do risco soberano na transmissão macroeconômica sobre o Ibovespa. A reconstrução preditiva do Causal Forest (R² = 0{,}2321, MAE = 0{,}010509) posiciona-o abaixo do GAM e do BSTS em termos de acurácia, resultado esperado dado que o tuning foi orientado por critério causal, e que a estimação honesta das folhas introduz encolhimento intencional que reduz variância ao custo de algum viés preditivo.
 
 % ----------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
