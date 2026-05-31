@@ -694,6 +694,30 @@ A terceira fase do projeto consistiu na aplicação de modelos econométricos cl
 
 % Esses resultados são coerentes com a teoria econômica, dado que choques cambiais e aumento no risco-país tendem a reduzir a atratividade do mercado acionário, e apontam para limitações do modelo linear em capturar a complexidade dos dados, especialmente as não linearidades e interações entre variáveis.
 
+\section{Análise Exploratória Direcionada}\label{sec:eda_tcc2}
+
+Antes de configurar os modelos de IA interpretável, foi conduzida uma análise exploratória direcionada sobre o conjunto de dados transformado (\texttt{br\_transformado}), com foco nos aspectos que mais diretamente impactam as escolhas metodológicas dos modelos subsequentes: escala e esparsidade das covariáveis, correlação com o alvo, multicolinearidade e estrutura de autocorrelação da série-alvo. Toda a análise opera exclusivamente sobre o conjunto de treino (2001--2019), preservando o conjunto de teste sem contaminação.
+
+\subsection{Escala, Esparsidade e Correlação com o Alvo}
+
+Uma primeira inspeção das estatísticas descritivas das covariáveis revelou assimetria expressiva de escala. A variação do risco-país ($\Delta$EMBI+, \texttt{embi\_brasil\_diff}) apresentou desvio padrão de 17,36, cerca de 500 vezes maior do que as demais covariáveis (dólar: 0,034; expectativa de IPCA: 0,018; PIB: 0,002; Selic: 0,0004). Essa diferença de escala, se não tratada, pode distorcer regularizações que assumem coeficientes em escala comparável, como o encolhimento bayesiano uniforme do BSTS.
+
+Além da escala, duas covariáveis exibiram alta concentração em zero: $\Delta$Selic (\texttt{br\_selic\_diff}) com 87,1\% dos valores iguais a zero, e $\Delta$Expectativa de IPCA (\texttt{ipca\_expectativa\_diff}) com 67,5\%. Essa esparsidade reflete a natureza dos respectivos instrumentos: a taxa Selic é ajustada nas reuniões do Copom, que ocorrem a cada 45 dias em média, e as expectativas de inflação são frequentemente revisadas apenas em episódios de choque. Em modelos lineares, variáveis com baixa variância efetiva tendem a contribuir pouco para o ajuste, embora possam carregar sinal informativo nos dias em que variam.
+
+A correlação de Pearson e Spearman entre cada covariável e o retorno logarítmico do Ibovespa (\texttt{br\_ibov\_ret\_log}) confirmou a relevância esperada das duas variáveis de maior magnitude: $\Delta$EMBI+ apresentou $\rho_{\text{Pearson}} = -0{,}4039$ e $\rho_{\text{Spearman}} = -0{,}4393$ (p $<$ 0,001); $\Delta$Câmbio apresentou $\rho_{\text{Pearson}} = -0{,}3394$ e $\rho_{\text{Spearman}} = -0{,}3168$ (p $<$ 0,001). As demais covariáveis ($\Delta$Expectativa IPCA, Retorno PIB, IPCA e $\Delta$Selic) não apresentaram correlação estatisticamente significativa com o alvo (p $\geq$ 0,25 em Spearman), o que é coerente com a alta proporção de zeros nas séries de menor frequência.
+
+A ausência de multicolinearidade relevante foi confirmada pelo Fator de Inflação da Variância (VIF) máximo de 1,14 entre todas as covariáveis, descartando a necessidade de eliminação por redundância linear.
+
+\subsection{Autocorrelação do Alvo e Defasagem dos Regressores}
+
+A estrutura de autocorrelação da série-alvo foi investigada por meio de correlações seriais e do teste de Ljung-Box. As autocorrelações do retorno logarítmico do Ibovespa foram fracas em magnitude: lag 1 ($-0{,}049$), lag 2 ($+0{,}006$), lag 5 ($+0{,}014$) e lag 10 ($+0{,}035$). Apesar dos valores baixos, o teste de Ljung-Box indicou estrutura autocorrelacional residual significativa (estatística $= 20{,}6$ no lag 5 e $= 43{,}8$ no lag 10; p $<$ 0,001 em ambos os casos), sinalizando que o ruído da série não é inteiramente livre de memória.
+
+A análise de correlações cruzadas com defasagem 1, 2 e 5 das covariáveis revelou que o sinal das variáveis macroeconômicas é essencialmente contemporâneo: as correlações entre os valores defasados das covariáveis e o retorno do dia seguinte foram consistentemente inferiores às correlações contemporâneas. Esse achado desencoraja a inclusão sistemática de versões defasadas das covariáveis como preditores, mas, ao mesmo tempo, a autocorrelação significativa de lag 1 da própria série-alvo motiva a inclusão de uma \textit{feature} autorregressiva (\texttt{ibov\_lag1}) nos modelos que se beneficiam de preditores adicionais, como o GAM e o BSTS.
+
+\subsection{Implicações Metodológicas}
+
+Os achados da análise exploratória orientaram diretamente três decisões de configuração adotadas nos modelos seguintes. Primeiro, a discrepância de escala do $\Delta$EMBI+ motivou o uso de um \textit{prior} heterogêneo no BSTS, com amplitude dez vezes maior para esse regressor do que para os demais, evitando que o encolhimento uniforme suprima seu efeito. Segundo, a autocorrelação significativa de lag 1 da série-alvo justificou a inclusão de \texttt{ibov\_lag1} como covariável adicional no GAM (experimento G8) e no BSTS, com ganho confirmado de desempenho \textit{out-of-sample}. Terceiro, a ausência de multicolinearidade relevante (VIF $\leq$ 1,14) dispensou qualquer eliminação prévia de variáveis por redundância linear, permitindo que os modelos realizem sua própria seleção com base em critérios estatísticos nativos.
+
 \section{Avaliação Out-of-Sample e Validação Temporal}
 
 Para que as métricas de desempenho reflitam a capacidade preditiva real dos modelos e não apenas a qualidade de ajuste sobre os dados de estimação, foi adotada uma estratégia de avaliação \textit{out-of-sample} com corte temporal estrito. Em séries temporais financeiras, a avaliação \textit{in-sample}, em que o modelo é ajustado e avaliado no mesmo conjunto de dados, tende a subestimar o risco de sobreajuste (\textit{overfitting}), pois permite que o modelo incorpore padrões específicos do período de treino que não necessariamente se reproduzem em dados futuros.
@@ -707,7 +731,7 @@ O corte temporal adotado foi $\text{01/01/2020}$, dividindo os dados em:
 
 A escolha do corte em 2020 é metodologicamente relevante por dois motivos. Primeiro, o período de teste concentra choques de natureza distinta dos presentes no treino, tornando-o um avaliador mais rigoroso da capacidade de generalização. Segundo, todos os modelos estimados neste trabalho utilizam o mesmo corte, garantindo comparabilidade direta entre as métricas de desempenho.
 
-Os modelos estimados \textit{in-sample} no TCC 1 sobre o conjunto completo de dados servem como linha de base referencial. Para fins de comparação \textit{out-of-sample}, cada modelo foi retreinado exclusivamente nos dados de treino e avaliado no conjunto de teste, com as métricas R², MAE e RMSE calculadas sobre observações não utilizadas na estimação.
+Os modelos estimados \textit{in-sample} sobre o conjunto completo de dados servem como linha de base referencial. Para fins de comparação \textit{out-of-sample}, cada modelo foi retreinado exclusivamente nos dados de treino e avaliado no conjunto de teste, com as métricas R², MAE e RMSE calculadas sobre observações não utilizadas na estimação.
 
 A robustez das métricas obtidas nesse split único foi também investigada por meio de \textit{walk-forward cross-validation} com janela expansiva (seis dobras, testes de dois anos cada, cobrindo 2010--2021). Os resultados indicaram que o desempenho dos modelos é sensível ao regime econômico, com desvio padrão do R² do GAM entre as dobras de 0{,}086, acima do limiar de estabilidade adotado como critério de adoção (0{,}05). Esse comportamento sugere que a relação entre variáveis macroeconômicas e retornos do Ibovespa varia substancialmente entre períodos de alta e baixa volatilidade. O fold correspondente ao período COVID (2020--2021) apresentou o maior R² de todas as dobras (0{,}378 para o GAM), enquanto os períodos de menor volatilidade (2012--2015) produziram os menores (0{,}16--0{,}19). Apesar da variabilidade, o ranking entre modelos (GAM $>$ OLS $>$ BSTS) manteve-se estável nas seis dobras, reforçando a conclusão principal do trabalho.
 
@@ -793,9 +817,9 @@ O método Causal Forest, proposto por \citeauthor{Gulen2024Balancing} (\citeyear
 % ---
 \chapter{Resultados Parciais}
 
-Este capítulo apresenta os resultados obtidos ao longo do trabalho. A primeira seção consolida a linha de base estabelecida no TCC 1, com o tratamento dos dados, os testes de estacionariedade e a estimação dos modelos econométricos clássicos (ARIMA e MQO). Em seguida, são apresentados os resultados \textit{out-of-sample} dos modelos de IA interpretável incorporados no TCC 2 (GAM e BSTS), encerrando-se com uma síntese comparativa entre os modelos.
+Este capítulo apresenta os resultados obtidos ao longo do trabalho. A primeira seção consolida a linha de base, com o tratamento dos dados, os testes de estacionariedade e a estimação dos modelos econométricos clássicos (ARIMA e MQO). Em seguida, são apresentados os resultados \textit{out-of-sample} dos modelos de IA interpretável (GAM e BSTS), encerrando-se com uma síntese comparativa entre os modelos. As escolhas de configuração de cada modelo — como a inclusão da \textit{feature} autorregressiva \texttt{ibov\_lag1} e o \textit{prior} heterogêneo para o $\Delta$EMBI+ no BSTS — decorrem da análise exploratória direcionada descrita na Seção~\ref{sec:eda_tcc2}.
 
-\section{Linha de Base (TCC 1)}\label{sec:linha_base_tcc1}
+\section{Linha de Base}\label{sec:linha_base_tcc1}
 
 A análise preliminar das séries macroeconômicas e financeiras em seus níveis originais indicou correlações elevadas e estatisticamente enganosas. Por exemplo, a correlação entre o PIB e o Ibovespa foi de aproximadamente 0,92, valor que reflete mais uma tendência comum de longo prazo do que uma relação causal genuína.
 
@@ -876,7 +900,7 @@ GAM & 0{,}2935 & 0{,}010671 & 0{,}014398 \\ \hline
 
 \section{Resultados do Modelo GAM}\label{sec:resultados_gam}
 
-A linha de base do TCC 1 indicou que o GAM já produz ganho explicativo \textit{in-sample} relevante em relação ao MQO (R² = 0{,}2935 contra 0{,}2086). Esta seção apresenta a avaliação \textit{out-of-sample} do GAM, conduzida sobre o conjunto de teste (2020--2024) com o procedimento de otimização descrito na Seção~\ref{sec:gam_otimizacao}.
+A linha de base indicou que o GAM já produz ganho explicativo \textit{in-sample} relevante em relação ao MQO (R² = 0{,}2935 contra 0{,}2086). Esta seção apresenta a avaliação \textit{out-of-sample} do GAM, conduzida sobre o conjunto de teste (2020--2024) com o procedimento de otimização descrito na Seção~\ref{sec:gam_otimizacao}.
 
 A Tabela~\ref{tab:gam_nsplines} apresenta os resultados da busca pelo número ótimo de splines, avaliando R² no conjunto de treino e MAE no conjunto de teste para cada valor do grid.
 
@@ -961,7 +985,7 @@ $\Delta$EMBI+ (Risco-País) & $+0{,}0076$ & 0{,}0155 & $-0{,}0065$ & $+0{,}0344$
 
 Cinco das seis variáveis apresentaram intervalos de credibilidade a 90\% inteiramente fora do zero, sendo inicialmente selecionadas. A única exclusão foi a variação do risco-país ($\Delta$EMBI+), cuja distribuição posterior cobriu valores positivos e negativos (IC 90\% $= [-0{,}0065;\, +0{,}0344]$), com probabilidade de inclusão de apenas 0{,}59. Esse resultado contrasta com a evidência consistente de relevância do EMBI+ identificada nos PDPs do GAM. Uma interpretação plausível é que, na parametrização com \texttt{sigma\_prior} uniforme e padrão, parte do efeito do EMBI+ é absorvida por componentes estruturais (tendência e sazonalidade) e por sua correlação parcial com o câmbio, reduzindo o sinal residual atribuído à variável.
 
-Diante dessa hipótese, o $\Delta$EMBI+ foi reincorporado ao modelo final com um \textit{prior} heterogêneo, dez vezes mais amplo do que o dos demais regressores, permitindo que seu coeficiente se manifestasse sem ser suprimido pelo encolhimento uniforme. Esse ajuste (experimento B7) resultou em elevação expressiva do R²\_teste de 0{,}1401 para 0{,}2436, sendo o principal responsável pelo ganho do BSTS final em relação ao \textit{baseline} operacional.
+Diante dessa hipótese, o $\Delta$EMBI+ foi reincorporado ao modelo final com um \textit{prior} heterogêneo, dez vezes mais amplo do que o dos demais regressores, permitindo que seu coeficiente se manifestasse sem ser suprimido pelo encolhimento uniforme. Essa escolha é consistente com o achado da análise exploratória (Seção~\ref{sec:eda_tcc2}), que identificou no $\Delta$EMBI+ desvio padrão ~500 vezes maior do que o das demais covariáveis, tornando-o particularmente vulnerável a encolhimento uniforme. Esse ajuste (experimento B7) resultou em elevação expressiva do R²\_teste de 0{,}1401 para 0{,}2436, sendo o principal responsável pelo ganho do BSTS final em relação ao \textit{baseline} operacional.
 
 A Figura~\ref{fig:bsts_posteriores} ilustra as distribuições posteriores dos seis coeficientes, com os intervalos de credibilidade a 90\% (laranja) e 95\% (vermelho) destacados.
 
@@ -1041,7 +1065,7 @@ GAM e BSTS são, portanto, complementares mais do que substitutos. O GAM é supe
 
 \section{Síntese Comparativa dos Modelos}\label{sec:sintese_modelos}
 
-A Tabela~\ref{tab:metricas_split} consolida o desempenho de todos os modelos estimados ao longo do trabalho, lado a lado: à esquerda, as métricas \textit{in-sample} da linha de base do TCC 1 (sobre o conjunto completo dos dados) e, à direita, as métricas \textit{out-of-sample} obtidas no conjunto de teste (jan/2020--jul/2024) após a estratégia de validação temporal adotada no TCC 2.
+A Tabela~\ref{tab:metricas_split} consolida o desempenho de todos os modelos estimados ao longo do trabalho, lado a lado: à esquerda, as métricas \textit{in-sample} da linha de base (sobre o conjunto completo dos dados) e, à direita, as métricas \textit{out-of-sample} obtidas no conjunto de teste (jan/2020--jul/2024).
 
 \begin{table}[ht!]
 \centering
