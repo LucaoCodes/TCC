@@ -44,10 +44,10 @@ Todos os R² abaixo são **out-of-sample** sobre o período de teste 2020–2024
 | OLS / MQO | Implementado | 0,2086 | 0,2339 | 0,01035 |
 | GAM (Generalized Additive Model) | Implementado | 0,2946 | 0,3045 | 0,00999 |
 | BSTS (Bayesian Structural Time Series) | Implementado | — | 0,2436 | 0,01015 |
-| Causal Forest (CausalForestDML) | Implementado | — | 0,2321 | 0,01051 |
+| Causal Forest (CausalForestDML) | Implementado | — | 0,4028 | 0,00966 |
 
-**Melhor modelo preditivo OOS:** GAM (R² = 0,3045).  
-**Causal Forest:** destaque para análise causal — ATE ≈ −0,000086 (não significativo); heterogeneidade de efeito (GATES) e análise BLP incluídas.
+**Melhor modelo preditivo OOS:** Causal Forest (R² = 0,4028).  
+**Causal Forest:** destaque para análise causal — ATE ≈ +0,000075 (não significativo); heterogeneidade de efeito (GATES) e análise BLP incluídas.
 
 ---
 
