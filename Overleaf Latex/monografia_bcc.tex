@@ -61,7 +61,7 @@
 \titulo{Modelos Explicativos com Inteligência Artificial Aplicados à Economia e Finanças}
 \autor{Lucas de Oliveira Freitas}
 \local{São José dos Campos, SP}
-\data{Julho de 2025}
+\data{Julho de 2026}
 \orientador{Prof. Dr. Renato Cesar Sato}
 % \coorientador{Prof. Dr. Beltrano da Silva}
 \instituicao{%
@@ -340,9 +340,9 @@ A relevância científica dessa discussão assume contornos ainda mais críticos
 
 A essas considerações soma-se um arcabouço normativo brasileiro que, nos últimos anos, deslocou a explicabilidade da condição de preferência metodológica para a de exigência legal e prudencial. A Lei Geral de Proteção de Dados (LGPD), em seu Art. 20, assegura ao titular o direito de revisão de decisões automatizadas que afetem seus interesses, incluindo expressamente as decisões de crédito, e impõe ao controlador o dever de fornecer informações claras sobre os critérios utilizados nessas decisões \cite{brasil2018lgpd}. No plano prudencial, as Resoluções do Conselho Monetário Nacional n\textsuperscript{o} 4.557/2017 e n\textsuperscript{o} 4.966/2021 exigem que modelos quantitativos de risco utilizados por instituições financeiras sejam auditáveis, documentados e submetidos a avaliação periódica de adequação e robustez \cite{bcb2017res4557, bcb2021res4966}, sendo que a segunda, em vigor desde 2025, introduziu o regime de perdas esperadas em consonância com o IFRS 9 e ampliou a demanda regulatória por modelos preditivos verificáveis. A Autoridade Nacional de Proteção de Dados (ANPD), por sua vez, encerrou em janeiro de 2025 a Tomada de Subsídios voltada à regulamentação do tratamento automatizado de dados pessoais, sinalizando que o regime de explicabilidade exigível continuará a se consolidar nos próximos anos \cite{anpd2025nt12}. Em conjunto, esses normativos tornam a interpretabilidade uma condição de conformidade jurídica e prudencial, e não apenas um atributo desejável dos modelos.
 
-Este trabalho contribui para essa literatura ao propor e testar modelos explicativos de aprendizado de máquina aplicados à análise de variáveis macroeconômicas e financeiras no Brasil. O objetivo é compreender os fatores que determinam, por exemplo, o comportamento de índices como o Ibovespa e a taxa de câmbio, explorando estruturas causais e padrões latentes de forma interpretável. Modelos como Generalized Additive Models (GAM), Bayesian Structural Time Series (BSTS) e Causal Forests serão utilizados, acompanhados de técnicas de explicação como SHAP (Shapley Additive explanations), PDP (Partial Dependence Plots) e ICE (Individual Conditional Expectation), permitindo que os resultados possam ser interpretados à luz da teoria econômica clássica e moderna.
+Este trabalho contribui para essa literatura ao propor e testar modelos explicativos de aprendizado de máquina aplicados à análise de variáveis macroeconômicas e financeiras no Brasil. O objetivo é compreender os fatores que determinam, por exemplo, o comportamento de índices como o Ibovespa e a taxa de câmbio, explorando estruturas causais e padrões latentes de forma interpretável. Modelos como Generalized Additive Models (GAM), Bayesian Structural Time Series (BSTS) e Causal Forests foram utilizados, acompanhados de técnicas de explicação como SHAP (SHapley Additive exPlanations) e PDP (Partial Dependence Plots), permitindo que os resultados sejam interpretados à luz da teoria econômica clássica e moderna.
 
-Ao integrar inteligência artificial com fundamentos econômicos, este projeto visa não apenas gerar modelos mais precisos e úteis para o mercado financeiro, mas também garantir que tais modelos possam ser auditados, discutidos e compreendidos.
+Ao integrar inteligência artificial com fundamentos econômicos, este trabalho buscou não apenas construir modelos mais precisos e úteis para a análise financeira, mas também garantir que seus resultados pudessem ser auditados, discutidos e compreendidos à luz da teoria econômica.
 
 \chapter{Fundamentação Teórica}
 
@@ -1211,8 +1211,7 @@ Essa leitura comparativa precisa ser complementada por um reconhecimento estrutu
 % ---
 \chapter{Plano de Trabalho e Cronograma}
 
-Nesta seção, são apresentados o plano de atividades referentes ao Trabalho de Conclusão de
-Curso II (TCC II) e o cronograma da pesquisa (Tabela \ref{tabela:cronograma}).
+Nesta seção, são apresentados o plano de atividades e o cronograma da pesquisa (Tabela~\ref{tabela:cronograma}).
 
 
 \begin{table}[!h]
@@ -1220,20 +1219,20 @@ Curso II (TCC II) e o cronograma da pesquisa (Tabela \ref{tabela:cronograma}).
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-{\bf Atividade} &     Mês 1 &     Mês 2 &     Mês 3 &     Mês 4 &     Mês 5 &     Mês 6 \\
+{\bf Atividade} & Fev--Mar/25 & Abr--Jun/25 & Jul--Set/25 & Out--Dez/25 & Jan--Mar/26 & Abr--Jul/26 \\
 \hline
-atividade 1 &     x       &      x     &        &        &          & \\
+GAM                & x & x &   &   &   &   \\
 \hline
-atividade 2 &            &      x      &      x     &            &            &            \\
+BSTS               &   & x & x &   &   &   \\
 \hline
-atividade 3 &            &            &      x      &     x     &       &          \\
+Causal Forest      &   &   & x & x &   &   \\
 \hline
-atividade 4 &            &            &            &          &     x    &            \\
+Análise comparativa&   &   &   & x & x &   \\
 \hline
-atividade 5 &    &     &           &     &     &     x     \\
+Consolidação final &   &   &   &   & x & x \\
 \hline
 \end{tabular}
-\caption{Tabela de cronograma de atividades.} \label{tabela:cronograma}
+\caption{Cronograma de atividades do TCC~II.} \label{tabela:cronograma}
 \end{center}
 \end{table}
 
@@ -1245,9 +1244,9 @@ atividade 5 &    &     &           &     &     &     x     \\
 \item \begin{sloppypar}\textbf{atividade 3 (concluída):} Aplicação do modelo Causal Forest com foco na inferência causal heterogênea. O tratamento foi definido como choque cambial binário (variação absoluta do câmbio acima do percentil 75 calculado no treino 2001--2019, limiar = 0,0229), com a variável de câmbio excluída das covariáveis por violar a positividade. A busca aleatória com $N = 150$ configurações no \textit{holdout} 2018--2019, guiada por R-loss causal, selecionou configuração com \texttt{n\_estimators} = 2504, \texttt{min\_samples\_leaf} = 76 e \texttt{max\_depth} = 10. O ATE estimado no teste foi de $-0{,}000086$ (IC 95\% $[-0{,}0026;\; +0{,}0025]$, não distinto de zero), mas a heterogeneidade foi confirmada pelo BLP de Chernozhukov et al. ($\beta_1 = 76{,}67$, $p < 0{,}001$), com os GATES exibindo amplitude total de 0,0083 entre o decil mais negativo e o mais positivo. A reconstrução preditiva obteve R² = 0{,}2321 no conjunto de teste. O risco-país ($\Delta$EMBI+) respondeu por 72,9\% da heterogeneidade do efeito condicional, indicando que a resposta do mercado acionário a choques cambiais é modulada predominantemente pelo ambiente de risco soberano.
 \end{sloppypar}
 
-\item \textbf{atividade 4:} Análise comparativa entre todos os modelos estimados ao longo do trabalho (ARIMA, MQO, GAM, BSTS e Causal Forest). Serão consolidadas métricas de desempenho preditivo e interpretabilidade.
+\item \textbf{atividade 4 (concluída):} Análise comparativa entre todos os modelos estimados ao longo do trabalho (ARIMA, MQO, GAM, BSTS e Causal Forest). As métricas de desempenho preditivo e interpretabilidade foram consolidadas na Tabela~\ref{tab:metricas_split} (Seção~\ref{sec:sintese_modelos}), com discussão das contribuições complementares de cada modelo.
 
-\item \textbf{atividade 5:} Consolidação da monografia: redação final dos capítulos de metodologia e resultados, elaboração da conclusão geral, revisão integral do texto e preparação da apresentação para a banca avaliadora.
+\item \textbf{atividade 5 (concluída):} Consolidação da monografia: redação final dos capítulos de metodologia e resultados, elaboração da conclusão geral, revisão integral do texto e preparação da apresentação para a banca avaliadora.
 
 \end{itemize}
 
@@ -1257,7 +1256,7 @@ atividade 5 &    &     &           &     &     &     x     \\
 % ---
 \chapter{Conclusão}
 
-Os resultados obtidos até esta etapa confirmam a importância de um tratamento cuidadoso das séries temporais utilizadas no projeto, especialmente no que se refere à necessidade de transformações para garantir a estacionariedade e evitar regressões espúrias. A análise exploratória, os testes de estacionariedade e os primeiros modelos estimados, como ARIMA e regressão linear com MQO, serviram como linha de base para avaliar a previsibilidade e os fatores que explicam os retornos do Ibovespa a partir de variáveis macroeconômicas e financeiras.
+Os resultados obtidos ao longo deste trabalho confirmam a importância de um tratamento cuidadoso das séries temporais utilizadas, especialmente no que se refere à necessidade de transformações para garantir a estacionariedade e evitar regressões espúrias. A análise exploratória, os testes de estacionariedade e os modelos econométricos clássicos (ARIMA e MQO), estimados como linha de base, estabeleceram os primeiros parâmetros para avaliação dos fatores que explicam os retornos do Ibovespa a partir de variáveis macroeconômicas e financeiras, servindo de referência para a avaliação dos modelos de IA interpretável que os sucederam.
 
 Apesar de sua relevância teórica e interpretabilidade direta, os modelos econométricos tradicionais mostraram limitações importantes. O modelo ARIMA, por ser univariado, não incorpora variáveis explicativas externas e apenas projeta a série com base em sua própria dinâmica. Já o modelo MQO, embora tenha permitido identificar relações estatisticamente significativas (como os efeitos negativos do câmbio e do risco-país), apresentou baixa capacidade preditiva (R² = 0,209) e falhas nos pressupostos fundamentais, como homocedasticidade e normalidade dos resíduos. Além disso, ambos os modelos são incapazes de capturar não linearidades complexas, efeitos interativos e mudanças estruturais ao longo do tempo, características recorrentes em mercados financeiros.
 
@@ -1270,6 +1269,8 @@ A interpretação dos resultados deve, contudo, observar limitações declaradas
 Esses limites, longe de invalidar as conclusões alcançadas, delineiam caminhos naturais de extensão do trabalho. Entre eles, destacam-se a adoção de janelas adaptativas ou \textit{rolling} na avaliação \textit{out-of-sample} e o acompanhamento da regulamentação em curso na Autoridade Nacional de Proteção de Dados, cujos desdobramentos podem reorientar as exigências de explicabilidade aplicáveis a modelos quantitativos de risco no Brasil \cite{anpd2025nt12}.
 
 A aplicação do Causal Forest concluiu o ciclo de modelos propostos, acrescentando à análise a dimensão causal que os modelos preditivos anteriores não abordam. O efeito causal médio de um dia de choque cambial sobre o retorno do Ibovespa não foi estatisticamente distinto de zero (ATE $= -0{,}000086$, IC 95\% cruzando zero), resultado que, interpretado corretamente, não indica ausência de efeito, mas sim a existência de efeitos heterogêneos de sinais opostos que se cancelam na média. A calibração pelo Best Linear Predictor de \citeonline{Chernozhukov2018DML} confirmou a significância estatística dessa heterogeneidade ($\beta_1 = 76{,}67$, $p < 0{,}001$), e a análise de GATES revelou amplitude total de aproximadamente 0,0083 entre os grupos de menor e maior efeito condicional, valor superior a três vezes o desvio padrão do CATE. O risco-país ($\Delta$EMBI+) emergiu como o principal modulador do efeito, respondendo por 72,9\% da variação do CATE, o que reforça a tese central deste trabalho de que a relação entre câmbio e mercado acionário no Brasil não é uniforme, mas condicionada pelo ambiente de risco soberano. Esse resultado é coerente com a evidência do GAM de que o EMBI+ é a variável com maior ganho não linear no modelo preditivo, e com o achado do BSTS de que o encolhimento uniforme dos coeficientes suprime o efeito do EMBI+ em detrimento dos demais regressores — em conjunto, os três modelos convergem para uma descrição consistente do papel central do risco soberano na transmissão macroeconômica sobre o Ibovespa. A reconstrução preditiva do Causal Forest (R² = 0{,}2321, MAE = 0{,}010509) posiciona-o abaixo do GAM e do BSTS em termos de acurácia, resultado esperado dado que o tuning foi orientado por critério causal, e que a estimação honesta das folhas introduz encolhimento intencional que reduz variância ao custo de algum viés preditivo.
+
+Em síntese, este trabalho demonstrou que modelos explicativos com IA interpretável constituem uma abordagem viável, complementar e teoricamente coerente para a análise de mercados financeiros em economias emergentes. Cada modelo contribuiu com uma perspectiva distinta: o GAM capturou as não linearidades e assimetrias nas relações entre variáveis macroeconômicas e retornos do Ibovespa; o BSTS decompôs a série em componentes estruturais e ofereceu inferência probabilística sobre os coeficientes; e o Causal Forest revelou a heterogeneidade do efeito causal do câmbio, modulada predominantemente pelo risco soberano. A convergência dos três modelos em torno do papel central do $\Delta$EMBI+ como principal canal de transmissão macroeconômica reforça a robustez dessa conclusão e evidencia que a interpretabilidade, longe de ser um custo em relação à acurácia, é o instrumento que torna possível essa leitura econômica integrada dos resultados.
 
 % ----------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
