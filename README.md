@@ -29,21 +29,25 @@ O contexto de economia emergente torna o problema ainda mais relevante: o Brasil
 | Expectativa IPCA 12m | BCB / Expectativas | Primeira diferença |
 | Risco-País (EMBI+) | IPEA (`JPM366_EMBI366`) | Primeira diferença |
 
-Período de análise: **novembro de 2001 a julho de 2024** (dias úteis). Split treino/teste em `2020-01-01` (treino: 2001–2019; teste: 2020–2024).
+Período de análise: **novembro de 2001 a julho de 2024** (dias úteis).  
+Split treino/teste em `2020-01-01` (treino: 2001–2019; teste: 2020–2024).
 
 ---
 
 ## Modelos
 
-| Modelo | Status | R² |
-|---|---|---|
-| ARIMA(4,0,3) | Implementado | — (univariado) |
-| OLS / MQO | Implementado | 0,209 (in-sample) |
-| GAM (Generalized Additive Model) | Implementado | 0,3045 (out-of-sample) |
-| BSTS (Bayesian Structural Time Series) | Implementado | 0,2436 (out-of-sample) |
-| Causal Forest | Implementado | 0,2321 (out-of-sample) |
+Todos os R² abaixo são **out-of-sample** sobre o período de teste 2020–2024, exceto OLS (in-sample e out-of-sample reportados por comparabilidade). Os valores autoritativos estão na tabela `tab:metricas_split` da monografia.
 
-> Os valores comparativos definitivos (métricas out-of-sample sobre o split 2020–2024) estão na tabela de síntese da monografia (`tab:metricas_split`), que é a fonte autoritativa.
+| Modelo | Status | R² (treino) | R² (teste OOS) | MAE (teste) |
+|---|---|---|---|---|
+| ARIMA(4,0,3) | Implementado | — (univariado) | — | 0,01223 |
+| OLS / MQO | Implementado | 0,2086 | 0,2339 | 0,01035 |
+| GAM (Generalized Additive Model) | Implementado | 0,2946 | 0,3045 | 0,00999 |
+| BSTS (Bayesian Structural Time Series) | Implementado | — | 0,2436 | 0,01015 |
+| Causal Forest (CausalForestDML) | Implementado | — | 0,2321 | 0,01051 |
+
+**Melhor modelo preditivo OOS:** GAM (R² = 0,3045).  
+**Causal Forest:** destaque para análise causal — ATE ≈ −0,000086 (não significativo); heterogeneidade de efeito (GATES) e análise BLP incluídas.
 
 ---
 
@@ -52,20 +56,26 @@ Período de análise: **novembro de 2001 a julho de 2024** (dias úteis). Split 
 ```
 notebooks/
   01_coleta_tratamento.ipynb          # Coleta via APIs (BCB, IPEA, yfinance)
-  02_modelos_base_tcc1.ipynb          # ARIMA + OLS (linha de base)
-  03_eda_pre_tcc2.ipynb               # Análise exploratória
-  04_gam.ipynb                        # GAM com tuning
-  05_bsts.ipynb                       # BSTS (orbit-ml)
-  06_causal_forest.ipynb              # Causal Forest (econml)
-  07_analise_comparativa.ipynb        # Síntese comparativa de todos os modelos
+  02_modelos_base_tcc1.ipynb          # ARIMA + OLS — linha de base (intocável)
+  03_eda_pre_tcc2.ipynb               # Análise exploratória pré-modelos
+  04_gam.ipynb                        # GAM com tuning de n_splines + PDPs
+  05_bsts.ipynb                       # BSTS via orbit-ml (MCMC pesado)
+  06_causal_forest.ipynb              # CausalForestDML (econml) — ATE/CATE/GATES/BLP
+  07_analise_comparativa.ipynb        # Síntese comparativa — gera corpo LaTeX de tab:metricas_split
 src/
-  tcc_utils.py                        # Paths, constantes e helpers compartilhados
+  tcc_utils.py                        # Paths absolutos, constantes e helpers compartilhados
+  regenera_bsts_figs.py               # Regenera figuras BSTS sem re-executar MCMC
 data/
   br_transformado.csv                 # Série diária transformada (fonte única)
-  metricas_comparativo.csv            # Acumulador de métricas (gerado pelos notebooks)
+  bsts_train.csv / bsts_test.csv      # Splits pré-formatados para o BSTS
+  causal_forest_train.csv / ...       # Splits pré-formatados para o Causal Forest
+  metricas_comparativo.csv            # Acumulador de métricas (gerado pelos notebooks 02–06)
 Overleaf Latex/
   monografia_bcc.tex                  # Documento LaTeX (ABNT / abnTeX2)
-  figs/                               # Figuras geradas pelos notebooks
+  references.bib                      # Referências bibliográficas
+  figs/                               # Figuras geradas pelos notebooks (únicas usadas no .tex)
+legado/
+  TCC_original.ipynb                  # Notebook monolítico original — congelado para auditoria
 ```
 
 ---
@@ -78,13 +88,24 @@ Instale todas as dependências de uma vez:
 pip install -r requirements.txt
 ```
 
-Ordem de execução: `01` (apenas ao atualizar dados) → `02` → `03` → `04` → `05` → `06` → `07`. Os notebooks 02–07 leem CSVs de `data/` e não dependem de APIs externas.
+**Ordem de execução:** `01` (apenas ao atualizar dados) → `02` → `03` → `04` → `05` → `06` → `07`.  
+Os notebooks 02–07 leem CSVs de `data/` e não dependem de APIs externas.
+
+> **Atenção:** o notebook `05_bsts.ipynb` executa amostragem MCMC e pode levar 20–60 minutos. O script `src/regenera_bsts_figs.py` regenera as figuras a partir do modelo salvo (`bsts_final_model.pkl`) sem re-executar o MCMC.
 
 ---
 
 ## Referências principais
 
 - RUDIN, C. Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. *Nature Machine Intelligence*, 2019.
+- ATHEY, S.; TIBSHIRANI, J.; WAGER, S. Generalized random forests. *Annals of Statistics*, 2019.
+- WAGER, S.; ATHEY, S. Estimation and inference of heterogeneous treatment effects using random forests. *Journal of the American Statistical Association*, 2018.
 - ZHANG et al. Impact of macroeconomic variables on financial volatility, 2025.
 - QIU et al. Multivariate BSTS, 2020.
 - GULEN et al. Balancing with Causal Forest, 2024.
+
+---
+
+## Nota sobre ferramentas de IA
+
+O assistente Claude (Anthropic) foi utilizado exclusivamente para auxiliar na estruturação de mensagens de commit e pull requests no Git — facilitando a adoção consistente das convenções Conventional Commits definidas no projeto. Nenhum código de modelagem, análise estatística ou texto da monografia foi gerado por IA.
