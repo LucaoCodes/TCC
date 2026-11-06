@@ -1,0 +1,110 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{parskip}
+
+\title{Documento-base do artigo: especificações linear e não linear das associações entre risco-país, câmbio e Ibovespa}
+\author{Lucas de Oliveira Freitas \and Renato Cesar Sato}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Pergunta de pesquisa}
+
+O que uma especificação aditiva não linear acrescenta à interpretação das associações entre as variações diárias do risco-país, medido pelo EMBI+ Brasil, as variações da taxa de câmbio R\$/US\$ e os retornos logarítmicos diários do Ibovespa, em comparação com uma especificação linear estimada por Mínimos Quadrados Ordinários?
+
+\section{Contribuição pretendida}
+
+O estudo busca compreender se a associação entre as variações do risco-país, as variações cambiais e os retornos diários do Ibovespa pode ser adequadamente resumida por uma sensibilidade constante, como pressupõe a especificação linear, ou se a intensidade dessa associação se altera conforme a magnitude e o sentido das variações observadas, aspecto relevante em um mercado emergente sujeito a episódios recorrentes de estresse. A comparação entre MQO e GAM é útil para essa investigação porque, quando estimados sobre as mesmas variáveis e o mesmo corte temporal, os dois modelos diferem essencialmente quanto à forma funcional: enquanto o MQO impõe um efeito marginal único para cada variável, o GAM permite que esse efeito varie ao longo da distribuição da variável, preservando a estrutura aditiva e, portanto, a leitura individual de cada relação. Assim, o artigo pretende acrescentar, além do ajuste dos dois modelos, uma avaliação variável a variável de onde a flexibilidade funcional altera a interpretação financeira e de onde a representação linear se mostra suficiente, acompanhada da avaliação fora da amostra e da discussão dos limites dessa evidência.
+
+\section{Evidências já disponíveis}
+
+% A preencher (item 3), aguardando orientação do professor.
+
+\section{Utilidade prática e limites}
+
+% A preencher (item 4), aguardando orientação do professor.
+
+\section{Pendências para conferência}
+
+% A preencher (item 5), aguardando orientação do professor.
+
+
+
+\section{Introdução}
+
+1,5 a 2,0 paginas. Focar a escrita no contexto de mercado emergente, problema de linearidade estrita e contribuição direta do estudo.
+
+
+\section{Revisão da Literatura}
+
+2,0 a 2,5 páginas. Foca na escrita da dinâmica do risco-país (EMBI+), transmissão de choques cambiais/acionários e não linearidade em finanças.
+
+
+
+\section{Metodologia}
+
+2,5 a 3,0 paginas. Aqui voce descreve a formulação matemática do MQO e GAM (splines de suavização), testes de estacionariedade e protocolo fora da amostra.
+
+
+\subsection{Pendências para conferência - coloquei assim só para ordenar a escrita, mas no texto final nao tem essa subsecao}
+
+Para garantir a solidez metodológica antes do envio final à revista, a versão definitiva do trabalho deve validar o seguinte protocolo de verificação:
+
+\begin{itemize}
+    \item [\square] \textbf{Sincronização e Tratamento da Base de Dados:} Verificar se os dias sem negociação (feriados nacionais e internacionais) foram tratados adequadamente por alinhamento de datas ou imputação consciente, evitando desfasagens artificiais entre o EMBI+ (medido em Nova York) e o Ibovespa/Câmbio.
+    \item [\square] \textbf{Testes de Estacionariedade:} Confirmar se todas as séries utilizadas (variação do EMBI+, variação do Câmbio e retorno logarítmico do Ibovespa) são estacionárias $I(0)$ por meio dos testes Augmented Dickey-Fuller (ADF) e KPSS.
+    \item [\square] \textbf{Escolha da Base de Suavização no GAM:} Validar a seleção do número de funções de base ($k$) para as \textit{thin plate regression splines} ou \textit{cubic regression splines}, realizando o teste de diagnóstico de dimensão de base para evitar sub-suavização ou super-suavização.
+    \item [\square] \textbf{Avaliação de Concurvidade:} Avaliar o grau de concurvidade (o análogo não linear da multicolinearidade) entre a variação do risco-país e a variação cambial no GAM.
+    \item [\square] \textbf{Validação Fora da Amostra (Out-of-Sample):} Realizar uma divisão temporal da amostra (ex: 80\% treino, 20\% teste) e comparar os modelos MQO e GAM pelas métricas de Raiz do Erro Quadrático Médio (RMSE), Erro Absoluto Médio (MAE) e taxa de acerto de sinal (\textit{Hit Ratio}).
+    \item [\square] \textbf{Normalidade e Heterocedasticidade dos Resíduos:} Avaliar o comportamento dos resíduos (QQ-plots, teste de ARCH) para discutir a presença de caudas pesadas ou volatilidade condicional.
+\end{itemize}
+
+\section{Resultados e Discussão}
+
+
+4,0 a 5,0 paginas (parte principal do texto). Aqui voce apresenta os gráficos de efeitos parciais (GAM), tabelas de ajuste in-sample, concurvidade e métricas out-of-sample, e discute os resultados e achados. Implicações para gestão de risco (hedging, estresse) e limitações (causalidade, ruído intradiário).
+
+\section{Conclusões e Limitações do Estudo}
+
+1,0 a 1,5 páginas. Resposta objetiva à pergunta de pesquisa, recomendações práticas e agenda de pesquisa futuras.
+
+
+\subsection{Utilidade Prática - coloquei assim só para ordenar a escrita, mas no texto final nao tem essa subsecao}
+A modelagem flexível das associações entre risco-país, câmbio e Ibovespa oferece aplicações diretas para a gestão de portfólios e avaliação de risco financeiro em mercados emergentes:
+\begin{enumerate}
+    \item \textbf{Gestão de Risco Asseimétrico e Stress Testing:} A identificação de não linearidades permite que gestores de fundos e analistas ajustem suas métricas de \textit{Value at Risk} (VaR) e \textit{Expected Shortfall}. Se a função de suavização do GAM demonstrar que choques elevados no EMBI+ geram um impacto desproporcionalmente maior no Ibovespa do que choques moderados, estratégias de proteção (\textit{hedging}) podem ser calibradas dinamicamente de acordo com o nível de volatilidade do mercado.
+    \item \textbf{Alocação Tática de Ativos:} A verificação dos pontos de inflexão onde a relação linear deixa de valer indica zonas de saturação ou regimes de estresse no mercado de câmbio e dívida soberana, servindo como sinalizador para rebalanceamento de carteiras.
+    \item \textbf{Parsimônia e Interpretabilidade Econométrica:} Diferente de modelos de aprendizado de máquina do tipo "caixa-preta" (como redes neurais ou \textit{Random Forests}), o GAM preserva a estrutura aditiva, permitindo isolar o efeito marginal de cada variável explicativa por meio da inspeção visual de suas curvas parciais.
+\end{enumerate}
+
+\subsection{Limites Empíricos - coloquei assim só para ordenar a escrita, mas no texto final nao tem essa subsecao}
+Apesar dos ganhos de flexibilidade, o estudo apresenta limitações inerentes à modelagem e aos dados utilizados:
+\begin{enumerate}
+    \item \textbf{Estática e Ausência de Dinâmica Temporal:} A especificação padrão aqui avaliada foca na associação simultânea entre variações diárias, não incorporando explicitamente a estrutura de defasagens complexas (como estruturas VAR/VECM) ou efeitos GARCH de agrupamento de volatilidade nos erros.
+    \item \textbf{Endogeneidade e Causalidade:} A análise identifica padrões de associação e ajuste funcional, mas não estabelece relações formais de causalidade estrita no sentido de Granger, dado que câmbio, risco e bolsa reagem concorrentemente a informações macroeconômicas exógenas.
+    \item \textbf{Sensibilidade às Janelas Amostrais:} As funções de suavização (*splines*) podem ser sensíveis a *outliers* extremos na amostra, exigindo validação cruzada fora da amostra rigorosa para evitar o superajuste (*overfitting*).
+\end{enumerate}
+
+\section{Referencias Bibliograficas}
+
+
+\section{Comentarios para a escrita do Artigo}
+
+Lucas, a forma mais eficiente para darmos ritmo à escrita do seu artigo e evitarmos retrabalho manual, a melhor estratégia é montarmos um pipeline de trabalho automatizado conectando o seu repositório no GitHub ao Overleaf. A ideia é fazer com que o seu código processe os dados e envie os resultados formatados direto para o texto do artigo.
+O primeiro passo é organizar a estrutura de pastas no seu repositório (LucaoCodes/TCC). Vale a pena separar o projeto de forma bem clara: uma pasta para os dados brutos e tratados (/dados), uma para os seus códigos em R ou Python (/scripts), e uma pasta exclusiva para os resultados (/saidas), dividida em subpastas de tabelas e figuras. Se achar viavel faça um clone do repositorio publico para um privado.
+O segundo passo é fazer os seus scripts gerarem os arquivos no formato final. Em vez de calcular os modelos e digitar os coeficientes manualmente no LaTeX, ajustamos o código para exportar as tabelas de resultados (estatísticas descritivas, regressão por MQO e métricas do GAM) diretamente em arquivos .tex. no Python, bibliotecas como pandas ou stargazer também oferecem essa opção. Da mesma forma, os gráficos das curvas de suavização do GAM e dos resíduos devem ser salvos pelo próprio código na pasta de figuras, preferencialmente no formato .pdf, que mantém alta qualidade no LaTeX.
+O terceiro passo é integrar esse material ao Overleaf. Você pode conectar seu projeto do Overleaf diretamente ao repositório do GitHub. No documento principal em LaTeX, em vez de montar tabelas gigantescas à mão, você usará o comando \texttt{\textbackslash input\{saidas/tabelas/tabela\_modelos.tex\}} para puxar a tabela pronta, e o comando \texttt{\textbackslash includegraphics\{saidas/figuras/grafico\_gam.pdf\}} para inserir as figuras.
+
+A grande vantagem desse fluxo é que, se decidirmos alterar a janela de dados, ajustar o número de funções de base do GAM ou rodar um novo teste de validação fora da amostra, você precisará apenas executar o script novamente. 
+O código atualizará os arquivos na pasta de saídas, o GitHub sincronizará com o Overleaf e todo o seu artigo será atualizado instantaneamente, sem risco de erro de digitação de números ou perda de formatação. Tenho orientado os alunos a seguirem esse fluxo pois gera menos retrabalho no final.
+
+Dê uma olhada na estrutura atual do seu repositório e me avise quando puder aplicar essa organização nas pastas para alinharmos os próximos passos da escrita!
+
+\end{document}
